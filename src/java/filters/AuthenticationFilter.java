@@ -46,7 +46,7 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = req.getSession(false);
 		
                 // Redirect if accessing page when not logged in
-		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUp.jsp"))){
+		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUpServlet") || uri.endsWith("SignUp.jsp"))){
 			this.context.log("Unauthorised access request");
 			res.sendRedirect("HomePage.html");
                 // If not logged in and access page that is allowed, do.

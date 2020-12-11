@@ -21,6 +21,7 @@ public class DBBean {
     private Statement state;
     private ResultSet rs;
 
+    // Get a connection to the database
     public boolean getConnection() {
 
         boolean flag = false;
@@ -39,6 +40,7 @@ public class DBBean {
 
     }
     
+    // Verify that user exists for logon
     public int verifyUser(String uName, String pwd){
         
         int userType = -1;
@@ -81,5 +83,38 @@ public class DBBean {
         return userType;
         
     }
+    
+    // Create new record in CLIENTS table
+    public void addClient(String data){
+        
+        try{
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO CLIENTS (cName, cAddress, cType, uName) VALUES" + data);
+            state.close();
+            //con.close();
+            
+        }catch (SQLException e){
+            System.err.println("Error: " + e);
+        }
+ 
+    }
+    
+    // Create new record in USERS table
+    public void addUser(String data){
+        
+        try{
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO USERS VALUES" + data);
+            state.close();
+            //con.close();
+            
+        }catch (SQLException e){
+            System.err.println("Error: " + e);
+        }
+ 
+    }
+    
     
 }
