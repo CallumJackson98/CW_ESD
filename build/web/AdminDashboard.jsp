@@ -14,6 +14,7 @@
     <body>
         <h1>Admin Dashboard</h1>
         <form action="LogoutServlet" method="post">
+            <input type="submit" value="View Signup Requests" formaction="SignupApprovals.jsp">
             <input type="submit" value="Logout" >
         </form>
     </body>

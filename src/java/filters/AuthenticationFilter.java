@@ -46,7 +46,7 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = req.getSession(false);
 		
                 // Redirect if accessing page when not logged in
-		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUpServlet") || uri.endsWith("SignUp.jsp"))){
+		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUpServlet") || uri.endsWith("SignUp.jsp") || uri.endsWith("StaffSignUp.jsp"))){
 			this.context.log("Unauthorised access request");
 			res.sendRedirect("HomePage.html");
                 // If not logged in and access page that is allowed, do.
@@ -62,22 +62,23 @@ public class AuthenticationFilter implements Filter {
                         this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
                         System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
                         
+                        // Redirected if they go to the pages in the loop based on userType
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                ) && (userType == 0 || userType == 1)){
+                                || uri.endsWith("SignupApprovals.jsp")) && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                ) && userType == 2){
+                                || uri.endsWith("SignupApprovals.jsp")) && userType == 2){
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
-                                || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp") 
+                                || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp")
                                 ) && userType == 3){
                             res.sendRedirect("AdminDashboard.jsp");
                             this.context.log("Redirected admin");

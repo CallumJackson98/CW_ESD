@@ -34,6 +34,7 @@ public class SignUpServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
         String address = request.getParameter("address");
         String sType = request.getParameter("serviceType");
+        String sRole = request.getParameter("staffRole");
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -52,7 +53,16 @@ public class SignUpServlet extends HttpServlet {
             // Staff sign up
             if(sType == null){
 
+                // Create string of roles in correct format
+                String role = "";
+                if("Doctor".equals(sRole)){
+                    role = "doctor";
+                }else{
+                    role = "nurse";
+                }
+                
                 // Create new record in TEMPSTAFF
+                db.addTempStaff("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+userName+"',"+"'"+pwd+"',"+"'"+role+"')");
 
             }
             // Patient sign up

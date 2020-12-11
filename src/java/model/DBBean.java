@@ -116,5 +116,20 @@ public class DBBean {
  
     }
     
+    // Create new record in TEMP_EMPLOYEE table
+    public void addTempStaff(String data){
+        
+        try{
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO TEMP_EMPLOYEE VALUES" + data);
+            state.close();
+            //con.close();
+            
+        }catch (SQLException e){
+            System.err.println("Error: " + e);
+        }
+ 
+    }
     
 }
