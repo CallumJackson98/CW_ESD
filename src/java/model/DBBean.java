@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -130,6 +131,30 @@ public class DBBean {
             System.err.println("Error: " + e);
         }
  
+    }
+    
+    // Return an array list of users waiting approvale
+    public ArrayList<String> getApprovalUsers(){
+        
+        ArrayList approvalUsers = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from TEMP_EMPLOYEE");
+            String userString;
+            while(rs.next()){
+                
+                userString = rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(5);
+                approvalUsers.add(userString);
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return approvalUsers;
+        
     }
     
 }

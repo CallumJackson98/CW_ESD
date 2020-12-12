@@ -59,20 +59,20 @@ public class AuthenticationFilter implements Filter {
                     
                     try{
                         int userType = (Integer) session.getAttribute("type");
-                        this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
+                        //this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
                         System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
                         
                         // Redirected if they go to the pages in the loop based on userType
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                || uri.endsWith("SignupApprovals.jsp")) && (userType == 0 || userType == 1)){
+                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet")) && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                || uri.endsWith("SignupApprovals.jsp")) && userType == 2){
+                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet")) && userType == 2){
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }
@@ -84,6 +84,7 @@ public class AuthenticationFilter implements Filter {
                             this.context.log("Redirected admin");
                         }
                         
+                        // If user goes to page and is correct type
                         chain.doFilter(request, response);
                         this.context.log("No redirect");
                         
