@@ -3,9 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jake/Documents/Uni%20Work/Year%203/Repo%20ESD/web/SignupApprovals.jsp</file>
-            <file>file:/C:/Users/Jake/Documents/Uni%20Work/Year%203/Repo%20ESD/src/java/model/DBBean.java</file>
-            <file>file:/C:/Users/Jake/Documents/Uni%20Work/Year%203/Repo%20ESD/src/java/servlets/AcceptRejectServlet.java</file>
+            <file>file:/C:/Users/Jake/Documents/Uni%20Work/Year%203/Repo%20ESD/src/java/filters/AuthenticationFilter.java</file>
         </group>
     </open-files>
 </project-private>

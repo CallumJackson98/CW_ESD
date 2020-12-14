@@ -208,4 +208,77 @@ public class DBBean {
         
     }
     
+    // Function to return all users in the USERS table
+    public ArrayList<String> getAllUsers(){
+        
+        ArrayList allUsers = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from USERS");
+            String userString;
+            while(rs.next()){
+                
+                userString = rs.getString(1) + " || " + rs.getString(3);
+                allUsers.add(userString);
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allUsers;
+        
+    }
+    
+    public void deleteUser(String uName){
+        
+        // Delete users
+        try{
+            
+            // Delete from clients or employees first (holds foreign key)
+            PreparedStatement st = con.prepareStatement("DELETE FROM CLIENTS WHERE UNAME = ?");
+            st.setString(1, uName);
+            st.executeUpdate();
+            
+            PreparedStatement st1 = con.prepareStatement("DELETE FROM EMPLOYEE WHERE UNAME = ?");
+            st1.setString(1, uName);
+            st1.executeUpdate();
+               
+            // Delete from users
+            PreparedStatement st3 = con.prepareStatement("DELETE FROM USERS WHERE UNAME = ?");
+            st3.setString(1, uName);
+            st3.executeUpdate();
+            
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+    }
+    
+    // Get all patients of a defined type
+    public ArrayList<String> getAllPatientsOfType(String type){
+        
+        ArrayList allOfType = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from CLIENTS where CTYPE='"+type+"'");
+            String userString;
+            while(rs.next()){
+                
+                userString = rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                allOfType.add(userString);
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allOfType;
+        
+    }
+    
 }

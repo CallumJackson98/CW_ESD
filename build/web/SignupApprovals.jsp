@@ -34,7 +34,7 @@
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
                 <th><b>Staff Member</b></th> 
-                <th><b>Approve</b></th> 
+                <th><b>Index</b></th> 
             </tr>
             <%
                 int counter = 1;

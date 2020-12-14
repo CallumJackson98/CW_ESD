@@ -69,8 +69,10 @@ public class SignUpServlet extends HttpServlet {
                 // Create new record in USERS
                 db.addUser("('"+userName+"',"+"'"+pwd+"',"+"'"+"client"+"')");
                 
+                String fullName = fName + " " + sName;
+                
                 // Create new record in CLIENTS
-                db.addClient("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
+                db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
 
             }
 
