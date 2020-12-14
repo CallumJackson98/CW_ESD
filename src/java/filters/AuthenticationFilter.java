@@ -65,14 +65,14 @@ public class AuthenticationFilter implements Filter {
                         // Redirected if they go to the pages in the loop based on userType
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet")) && (userType == 0 || userType == 1)){
+                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet") || uri.endsWith("AcceptRejectServlet")) && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet")) && userType == 2){
+                                || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet") || uri.endsWith("AcceptRejectServlet")) && userType == 2){
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }

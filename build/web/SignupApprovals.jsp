@@ -47,7 +47,7 @@
         </table>
         
         <!--    Create dynamic table that has correct amount of checkboxes    -->
-        <form action="AdminDashboard.jsp" method="get">
+        <form action="AcceptRejectServlet" method="post">
           
             <%for(int i = 0; i < appUsers.size(); i++){%>
             
@@ -56,11 +56,18 @@
                 
             <%}%>
             
+            Accept <input type="radio" id="accept" name="arButton" value="Accept" checked>
+            Reject <input type="radio" id="reject" name="arButton" value="Reject">
+            <br>
+            
+            <!--      Hidden element to pass references to rows      -->
+            <input type="hidden" id="checked_hidden" name="checked_hidden"  value="">
+            
             <input type="submit" value="Confirm">
         </form>
         
         <!--    Items to display which boxes are ticked    -->
-        <p>Users to be added to system:<br></p>
+        <p>Users to be added/removed (indexes):<br></p>
         <p id="displayChecked">(None checked)</p>
         
         <!--    Function to check which boxes are ticked and update on page    -->
@@ -69,24 +76,34 @@
                 
                 // Var to hold checked boxes
                 var checked = "";
+                var checkedNames = "";
                 
                 <%for(int j = 0; j < appUsers.size(); j++){%>
             
                     // Get the checkbox
                     var checkBox = document.getElementById("<%=j%>");
                     
+                    // Create string list of elements
+                    <%
+                        String[] splitChecked = appUsers.get(j).split(", ");
+                        
+                    %>
+                    
                     // Check if checked
                     if (checkBox.checked == true){
                         // Add id to tracker variable
                         checked = checked + "<%=j%> ";
+                        checkedNames = checkedNames + "<%=splitChecked[2]%> ";
                     }
                 
                 <%}%>
                 
                 if(checked === ""){
                     document.getElementById("displayChecked").innerHTML = "(None checked)";
+                    document.getElementById("checked_hidden").value = "";
                 }else{
                     document.getElementById("displayChecked").innerHTML = checked;
+                    document.getElementById("checked_hidden").value = checkedNames;
                 }
                 
               }

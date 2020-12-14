@@ -64,9 +64,7 @@ public class SignUpServlet extends HttpServlet {
                 // Create new record in TEMPSTAFF
                 db.addTempStaff("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+userName+"',"+"'"+pwd+"',"+"'"+role+"')");
 
-            }
-            // Patient sign up
-            else{
+            }else{// Patient sign up
 
                 // Create new record in USERS
                 db.addUser("('"+userName+"',"+"'"+pwd+"',"+"'"+"client"+"')");
