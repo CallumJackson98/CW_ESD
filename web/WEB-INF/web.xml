@@ -8,7 +8,14 @@
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-  
+    <servlet>
+        <servlet-name>AppointmentServlet</servlet-name>
+        <servlet-class>servlets.AppointmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppointmentServlet</servlet-name>
+        <url-pattern>/AppointmentServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
