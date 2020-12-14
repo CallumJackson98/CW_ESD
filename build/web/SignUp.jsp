@@ -20,5 +20,22 @@
         submitted, an administrator will approve or reject your application.</p>
         <br>
         
+<<<<<<< HEAD
+=======
+        <form action="SignUpServlet" method="post">
+            First Name: <input type="text" name="fName" required>
+            <br>
+            Surname: <input type="text" name="sName" required>
+            <br>
+            Password: <input type="password" name="pwd" required>
+            <br>
+            Address: <input type= "address" name="address" required>
+            <br>
+            NHS <input type="radio" id="NHS" name="serviceType" value="NHS" checked>
+            Private <input type="radio" id="private" name="serviceType" value="Private">
+            <br>
+            <input type="submit" value="SignUp">
+        </form>
+>>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     </body>
 </html>

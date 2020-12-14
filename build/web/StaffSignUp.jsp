@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SignUp
-    Created on : 07-Dec-2020, 11:33:24
+    Document   : StaffSignUp
+    Created on : 11-Dec-2020, 16:36:26
     Author     : Jake
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Patient sign up page</title>
+        <title>Staff Sign Up Page</title>
     </head>
     <body>
         <%-- Invalidate session so access to other pages not allowed. --%>
@@ -20,8 +20,6 @@
         submitted, an administrator will approve or reject your application.</p>
         <br>
         
-<<<<<<< HEAD
-=======
         <form action="SignUpServlet" method="post">
             First Name: <input type="text" name="fName" required>
             <br>
@@ -31,11 +29,10 @@
             <br>
             Address: <input type= "address" name="address" required>
             <br>
-            NHS <input type="radio" id="NHS" name="serviceType" value="NHS" checked>
-            Private <input type="radio" id="private" name="serviceType" value="Private">
+            Doctor <input type="radio" id="doctor" name="staffRole" value="Doctor" checked>
+            Nurse <input type="radio" id="nurse" name="staffRole" value="Nurse">
             <br>
-            <input type="submit" value="SignUp">
+            <input type="submit" value="StaffSignUp">
         </form>
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     </body>
 </html>

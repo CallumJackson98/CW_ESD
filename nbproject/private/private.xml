@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -5,3 +6,16 @@
         <group/>
     </open-files>
 </project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/AdminDashboard.jsp</file>
+            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/StaffDashboard.jsp</file>
+            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/PatientDashboard.jsp</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
