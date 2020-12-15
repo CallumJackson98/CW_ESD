@@ -281,4 +281,85 @@ public class DBBean {
         
     }
     
+    // Add prescriptionr request to prescription table
+    public void addRequestedPrescription(String uName, String drugName){
+        
+        try{
+            
+            String data = "('"+uName+"','"+drugName+"')";
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (uName, drug_Name) VALUES" + data);
+            state.close();
+            
+        }catch(Exception e){
+            
+            System.err.println("Error: " + e);
+            
+        }
+        
+    }
+    
+    // Get all requested prescriptions
+    public ArrayList<String> getRequestedPrescriptions(){
+        
+        ArrayList requestedPrescriptions = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from TEMP_PRESCRIPTIONS");
+            String userString;
+            while(rs.next()){
+                
+                userString = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3);
+                requestedPrescriptions.add(userString);
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return requestedPrescriptions;
+        
+    }
+    
+    public void acceptRejectPrescription(String ar, String prescriptionID){
+        
+        // Copy to staff table and delete from TEMP_PRESCRIPTIONS
+        if("Accept".equals(ar)){
+            
+            try{
+                
+                PreparedStatement st1 = con.prepareStatement
+                ("INSERT INTO PRESCRIPTIONS (UNAME, DRUG_NAME)"
+                    + " SELECT UNAME, DRUG_NAME FROM TEMP_PRESCRIPTIONS"
+                    + " WHERE PRESCRIPTION_ID = ?");
+                st1.setString(1, prescriptionID);
+                st1.executeUpdate();
+
+                PreparedStatement st2 = con.prepareStatement("DELETE FROM TEMP_PRESCRIPTIONS WHERE PRESCRIPTION_ID = ?");
+                    st2.setString(1, prescriptionID);
+                    st2.executeUpdate();
+            
+            }catch(Exception e){
+                System.err.println("Error: " + e);
+            }
+        }else{
+            // Delete from TEMP_PRESCRIPTIONS
+            try{
+                
+                PreparedStatement st = con.prepareStatement("DELETE FROM TEMP_PRESCRIPTIONS WHERE PRESCRIPTION_ID = ?");
+                st.setString(1, prescriptionID);
+                st.executeUpdate();
+                
+            }catch(Exception e){
+                System.err.println("Error: " + e);
+            }
+            
+            
+        }
+        
+    }
+    
 }
