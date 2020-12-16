@@ -1,19 +1,12 @@
 <%-- 
     Document   : AdminDashboard
-<<<<<<< HEAD
-    Created on : 24-Nov-2020, 18:14:27
-    Author     : Jake
-=======
     Created on : 10-Dec-2020, 10:03:45
     Author     : Sam
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-=======
     <style>
         body {
             background: linear-gradient(to top left, #99ccff 0%, #666699 100%);
@@ -44,18 +37,12 @@
         }
 
     </style>
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Dashboard</title>
     </head>
     <body>
         <h1>Admin Dashboard</h1>
-<<<<<<< HEAD
-        <form action="LogoutServlet" method="post">
-            <input type="submit" value="Logout" >
-        </form>
-=======
         
         <!--The logout form that accesses Logout Servlet implemented as a button.-->
         <form action="LogoutServlet" method="post" id="logoutform"></form>
@@ -90,6 +77,5 @@
         <h3>You are logged in as a <%=type%>. (TO IMPLEMENT: Convert type number to type name.)</h3>
         <h3>Your session ID is <%=sessionID%>.</h3>
 
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     </body>
 </html>

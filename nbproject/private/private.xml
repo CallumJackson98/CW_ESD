@@ -1,21 +1,18 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/AdminDashboard.jsp</file>
-            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/StaffDashboard.jsp</file>
-            <file>file:/C:/Users/samco/Documents/Computer%20Science/Enterprise%20Systems%20Development/Coursework/CW_ESD-Jake_Branch/web/PatientDashboard.jsp</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/web/StaffDashboard.jsp</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/web/PatientLogin.html</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/src/java/servlets/AcceptRejectServlet.java</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/web/login.html</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/src/java/filters/AuthenticationFilter.java</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/web/PatientDashboard.jsp</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/web/AdminDashboard.jsp</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/src/java/servlets/appointment.java</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/src/java/model/DBBean.java</file>
+            <file>file:/E:/Uni%20Work/Uni/Year%203/Enterprise%20Systems%20Development/Assignment/ESD_Coursework/CW_ESD/src/java/servlets/AppointmentServlet.java</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58

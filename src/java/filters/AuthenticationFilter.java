@@ -46,11 +46,7 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = req.getSession(false);
 		
                 // Redirect if accessing page when not logged in
-<<<<<<< HEAD
-		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUp.jsp"))){
-=======
 		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet") || uri.endsWith("SignUpServlet") || uri.endsWith("SignUp.jsp") || uri.endsWith("StaffSignUp.jsp"))){
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
 			this.context.log("Unauthorised access request");
 			res.sendRedirect("HomePage.html");
                 // If not logged in and access page that is allowed, do.
@@ -63,14 +59,6 @@ public class AuthenticationFilter implements Filter {
                     
                     try{
                         int userType = (Integer) session.getAttribute("type");
-<<<<<<< HEAD
-                        this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
-                        System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
-                        
-                        if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
-                                || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-                                ) && (userType == 0 || userType == 1)){
-=======
                         //this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
                         System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
                         
@@ -78,37 +66,25 @@ public class AuthenticationFilter implements Filter {
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
                                 || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet") || uri.endsWith("AcceptRejectServlet")) && (userType == 0 || userType == 1)){
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
-<<<<<<< HEAD
-                                ) && userType == 2){
-=======
                                 || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet") || uri.endsWith("AcceptRejectServlet")) && userType == 2){
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }
                         
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
-<<<<<<< HEAD
-                                || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp") 
-=======
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp")
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
                                 ) && userType == 3){
                             res.sendRedirect("AdminDashboard.jsp");
                             this.context.log("Redirected admin");
                         }
                         
-<<<<<<< HEAD
-=======
                         // If user goes to page and is correct type
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
                         chain.doFilter(request, response);
                         this.context.log("No redirect");
                         

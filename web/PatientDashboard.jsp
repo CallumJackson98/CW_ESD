@@ -1,19 +1,18 @@
 <%-- 
     Document   : PatientDashboard
-<<<<<<< HEAD
-    Created on : 24-Nov-2020, 18:15:17
-    Author     : Jake
-=======
     Created on : 10-Dec-2020, 09:02:13
     Author     : Sam
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
 --%>
 
+<%@page import="java.util.concurrent.TimeUnit.DAYS"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="servlets.appointment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="servlets.AppointmentServlet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-=======
     <style>
         body {
             background: linear-gradient(to top left, #99ccff 0%, #666699 100%);
@@ -42,20 +41,24 @@
         .navbutton{
             background-color: #000080; /* Navy */
         }
-
     </style>
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Patient Dashboard</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $( "#datepicker-13" ).datepicker();
+                $( "#datepicker-13" ).datepicker("show");
+            });
+        </script>
     </head>
+    
+    
+    
     <body>
-<<<<<<< HEAD
-        <h1>Patient dashboard</h1>
-        <form action="LogoutServlet" method="post">
-            <input type="submit" value="Logout" >
-        </form>
-=======
         <h1>Patient Dashboard</h1>
         
         <!--The logout form that accesses Logout Servlet implemented as a button.-->
@@ -84,11 +87,24 @@
                     }
                 }
             }
+
         %>
         <h3>Hi <%=userName%>, login successful. </h3>
         <h3>You are logged in as a <%=type%>. (TO IMPLEMENT: Convert type number to type name.)</h3>
         <h3>Your session ID is <%=sessionID%>.</h3>
+        
+        <p>Enter Date: <input type = "text" id = "datepicker-13"></p>
+        
+        <%
+            ArrayList<appointment> allAppointments = (ArrayList<appointment>) request.getAttribute("AppointmentServlet");
+            
 
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
+        %>
+
+        
+       
+
+        
+        
     </body>
 </html>

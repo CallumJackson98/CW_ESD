@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-    /*
-=======
 /*
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,17 +7,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-<<<<<<< HEAD
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-=======
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
 
 /**
  *
@@ -33,10 +23,7 @@ public class DBBean {
     private Statement state;
     private ResultSet rs;
 
-<<<<<<< HEAD
-=======
     // Get a connection to the database
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     public boolean getConnection() {
 
         boolean flag = false;
@@ -55,10 +42,7 @@ public class DBBean {
 
     }
     
-<<<<<<< HEAD
-=======
     // Verify that user exists for logon
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     public int verifyUser(String uName, String pwd){
         
         int userType = -1;
@@ -68,11 +52,7 @@ public class DBBean {
             rs = state.executeQuery("SELECT * from USERS");
             while(rs.next()){
                 
-<<<<<<< HEAD
-                System.out.println(rs.getString(1) + " " + rs.getString(2));
-=======
                 //System.out.println(rs.getString(1) + " " + rs.getString(2));
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
                 
                 if(rs.getString(1).equals(uName) && rs.getString(2).equals(pwd)){
                     
@@ -106,8 +86,6 @@ public class DBBean {
         
     }
     
-<<<<<<< HEAD
-=======
     // Create new record in CLIENTS table
     public void addClient(String data){
         
@@ -230,5 +208,4 @@ public class DBBean {
         
     }
     
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
 }

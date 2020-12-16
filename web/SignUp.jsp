@@ -20,8 +20,6 @@
         submitted, an administrator will approve or reject your application.</p>
         <br>
         
-<<<<<<< HEAD
-=======
         <form action="SignUpServlet" method="post">
             First Name: <input type="text" name="fName" required>
             <br>
@@ -36,6 +34,5 @@
             <br>
             <input type="submit" value="SignUp">
         </form>
->>>>>>> 74fad0fb031eb0afcae285bebb0352d728bb8d58
     </body>
 </html>
