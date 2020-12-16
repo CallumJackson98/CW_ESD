@@ -85,7 +85,7 @@
                     
                     // Create string list of elements
                     <%
-                        String[] splitChecked = appUsers.get(j).split(", ");
+                        String[] splitChecked = appUsers.get(j).split("; ");
                         
                     %>
                     
