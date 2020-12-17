@@ -63,7 +63,7 @@ public class DBBean {
                         case "nurse":
                             userType = 1;
                             break;
-                        case "patient":
+                        case "client":
                             userType = 2;
                             break;
                         case "admin":
