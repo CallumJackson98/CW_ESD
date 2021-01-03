@@ -4,11 +4,7 @@
     Author     : Sam
 --%>
 
-<%@page import="java.util.concurrent.TimeUnit.DAYS"%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="servlets.appointment"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="servlets.AppointmentServlet"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -45,15 +41,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Patient Dashboard</title>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <script>
-            $(function() {
-                $( "#datepicker-13" ).datepicker();
-                $( "#datepicker-13" ).datepicker("show");
-            });
-        </script>
     </head>
     
     
@@ -64,11 +51,16 @@
         <!--The logout form that accesses Logout Servlet implemented as a button.-->
         <form action="LogoutServlet" method="post" id="logoutform"></form>
         
+        
         <!--Patient Dashboard Navigation Bar-->
-        <button type="button" onclick="">Book Appointment</button> 
+        
+        <form action="AppointmentServlet" method="post">
+        <button type="submit" formaction="BookAppointment.jsp">Book Appointment</button>
+        </form>
         <button type="button" onclick="">Request Prescription</button>
         <button type="button" onclick="">View Invoices</button>
         <button type="submit" class="navbutton" form="logoutform" value="Submit">Logout</button>
+        
         
         <%
             //allow access only if session exists
@@ -93,17 +85,8 @@
         <h3>You are logged in as a <%=type%>. (TO IMPLEMENT: Convert type number to type name.)</h3>
         <h3>Your session ID is <%=sessionID%>.</h3>
         
-        <p>Enter Date: <input type = "text" id = "datepicker-13"></p>
         
-        <%
-            ArrayList<appointment> allAppointments = (ArrayList<appointment>) request.getAttribute("AppointmentServlet");
-            
-
-        %>
-
         
-       
-
         
         
     </body>
