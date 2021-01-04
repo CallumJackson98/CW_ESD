@@ -54,15 +54,53 @@ public class BookAppointmentServlet extends HttpServlet {
             // Check if appointment is a duplicate for staff mem
             if(staff.equals("Doctor")){
                 
+                // Get ID of FT doc
+                String ftDocID = db.getStaffID("doctor", "FT");
+                
                 // Check full time doctor (MON-FRI)
-                
+                if(!db.checkIfAppExists(date, hour+":"+mins, ftDocID)){
+                    
                     // If available, create booking
-                
-                // Else: Check pt doctor if day is correct (TUE-THUR)
-                
+                    System.out.println("CREATE BOOKING FOR FT DOC");
+                   
+                }else{
+                    
+                    // Else: Check pt doctor if day is correct (TUE-THUR)
+                    if(!"Monday".equals(day) || !"Friday".equals(day)){
+                        
+                        // Get ID of PT doc
+                        String ptDocID = db.getStaffID("doctor", "PT");
+                        
+                        // If available create booking
+                        if(!db.checkIfAppExists(date, hour+":"+mins, ptDocID)){
+                            
+                            // Create booking
+                            System.out.println("CREATE BOOKING FOR PT DOC");
+                            
+                        }
+                        
+                    }
+   
+                }
             }else{
                 
                 // Check nurse if day is correct (MON/FRI)
+                if(!"Monday".equals(day) || !"Friday".equals(day)){
+                    
+                    // Get ID of PT nurse
+                    String ptNurseID = db.getStaffID("nurse", "PT");
+                
+                    // Create booking if available
+                    if(!db.checkIfAppExists(date, hour+":"+mins, ptNurseID)){
+                        
+                        // Create booking
+                        System.out.println("CREATE BOOKING FOR PT NURSE");
+                        
+                    }
+                    
+                }
+                
+                
                 
                 
             }

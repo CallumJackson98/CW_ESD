@@ -363,14 +363,14 @@ public class DBBean {
     }
     
     // Verify that appointment for staff member is free
-    public boolean checkIfAppExists(String date, String time){
+    public boolean checkIfAppExists(String date, String time, String eID){
         
         try {
             state = con.createStatement();
             rs = state.executeQuery("SELECT * from BOOKING_SLOTS");
             while(rs.next()){
                 
-                if(rs.getString(4).equals(date) && rs.getString(5).equals(time)){
+                if(rs.getString(4).equals(date) && rs.getString(5).equals(time) && rs.getString(2).equals(eID)){
                     
                     return true;
                     
@@ -405,6 +405,7 @@ public class DBBean {
         
     }
     
+    // Function to get user ID
     public String getUserID(String uName, String tableName){
         
         int col = 4;
@@ -430,6 +431,63 @@ public class DBBean {
         }//try
         
         return "null";
+        
+    }
+    
+    // Function to get staff ID based on type and shift pattern
+    public String getStaffID(String sType, String shift){
+        
+        try {
+            
+            String uName = "";
+            
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from EMPLOYEE");
+            while(rs.next()){
+                
+                if(rs.getString(5).equals(shift)){
+                    
+                    uName = rs.getString(4);
+                    
+                    if(checkTypeMatches(sType, uName)){
+                        
+                        return rs.getString(1);
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    public boolean checkTypeMatches(String sType, String uName){
+        
+        try {
+            
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from USERS");
+            while(rs.next()){
+                
+                if(rs.getString(3).equals(sType) && rs.getString(1).equals(uName)){
+                    
+                    return true;
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return false;
         
     }
     
