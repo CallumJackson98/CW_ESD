@@ -68,7 +68,8 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("SignupApprovals.jsp") || uri.endsWith("ApprovalServlet") 
                                 || uri.endsWith("AcceptRejectServlet") || uri.endsWith("ViewAllUsers.jsp") 
                                 || uri.endsWith("DeleteUserServlet") || uri.endsWith("RequestPrescription.jsp") 
-                                || uri.endsWith("RequestPrescriptionServlet")) 
+                                || uri.endsWith("RequestPrescriptionServlet") || uri.endsWith("BookAppointment.jsp") 
+                                || uri.endsWith("BookAppointmentServlet")) 
                                 && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
@@ -87,7 +88,8 @@ public class AuthenticationFilter implements Filter {
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp") 
                                 || uri.endsWith("RequestPrescription.jsp") || uri.endsWith("RequestPrescriptionServlet") 
-                                || uri.endsWith("StaffServlet" ) || uri.endsWith("PrescriptionApprovals.jsp") || uri.endsWith("arPrescriptionServlet"))
+                                || uri.endsWith("StaffServlet" ) || uri.endsWith("PrescriptionApprovals.jsp") || uri.endsWith("arPrescriptionServlet") 
+                                || uri.endsWith("BookAppointment.jsp") || uri.endsWith("BookAppointmentServlet"))
                                 && userType == 3){
                             res.sendRedirect("AdminDashboard.jsp");
                             this.context.log("Redirected admin");

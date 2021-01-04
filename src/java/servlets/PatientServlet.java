@@ -43,7 +43,12 @@ public class PatientServlet extends HttpServlet {
         DBBean db = new DBBean();
         boolean bool = db.getConnection();
         
-        viewer = "RequestPrescription.jsp";
+        if(rp != null){
+            viewer = "RequestPrescription.jsp";
+        }else{
+            viewer = "BookAppointment.jsp";
+        }
+        
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);
         view.forward(request, response);

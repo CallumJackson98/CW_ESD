@@ -174,8 +174,8 @@ public class DBBean {
                 st1.executeUpdate();
                 
                 PreparedStatement st = con.prepareStatement
-                ("INSERT INTO EMPLOYEE (ENAME, EADDRESS, UNAME)"
-                    + " SELECT ENAME, EADDRESS, UNAME FROM TEMP_EMPLOYEE"
+                ("INSERT INTO EMPLOYEE (ENAME, EADDRESS, UNAME, SHIFT)"
+                    + " SELECT ENAME, EADDRESS, UNAME, SHIFT FROM TEMP_EMPLOYEE"
                     + " WHERE UNAME = ?");
                 st.setString(1, uName);
                 st.executeUpdate();
@@ -281,7 +281,7 @@ public class DBBean {
         
     }
     
-    // Add prescriptionr request to prescription table
+    // Add prescription request to prescription table
     public void addRequestedPrescription(String uName, String drugName){
         
         try{
@@ -359,6 +359,77 @@ public class DBBean {
             
             
         }
+        
+    }
+    
+    // Verify that appointment for staff member is free
+    public boolean checkIfAppExists(String date, String time){
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS");
+            while(rs.next()){
+                
+                if(rs.getString(4).equals(date) && rs.getString(5).equals(time)){
+                    
+                    return true;
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return false;
+        
+    }
+    
+    // Add booking to booking table
+    public void addBooking(String eID, String cID, String date, String time){
+        
+        try{
+            
+            String data = "('"+eID+"','"+cID+"','"+date+"','"+time+"')";
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (EID, CID, SDATE, STIME) VALUES" + data);
+            state.close();
+            
+        }catch(Exception e){
+            
+            System.err.println("Error: " + e);
+            
+        }
+        
+    }
+    
+    public String getUserID(String uName, String tableName){
+        
+        int col = 4;
+        if("CLIENTS".equals(tableName)){
+            col = 5;
+        }
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from " + tableName);
+            while(rs.next()){
+                
+                if(rs.getString(col).equals(uName)){
+                    
+                    return rs.getString(1);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
         
     }
     

@@ -33,6 +33,9 @@
             Doctor <input type="radio" id="doctor" name="staffRole" value="Doctor" checked>
             Nurse <input type="radio" id="nurse" name="staffRole" value="Nurse">
             <br>
+            Full Time <input type="radio" id="ft" name="shift" value="FT" checked>
+            Part Time <input type="radio" id="pt" name="shift" value="PT">
+            <br>
             <input type="submit" value="StaffSignUp">
         </form>
         

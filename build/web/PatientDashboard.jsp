@@ -15,6 +15,7 @@
         <h1>Patient dashboard</h1>
         <form action="LogoutServlet" method="post">
             <input type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
+            <input type="submit" name = "baButton" value="Book Appointment" formaction="PatientServlet">
             <input type="submit" value="Logout" >
         </form>
     </body>
