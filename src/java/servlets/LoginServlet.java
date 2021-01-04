@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
             Cookie userName = new Cookie("user", user);
             userName.setMaxAge(30*60);
             response.addCookie(userName);
-            
+
             switch (userType) {
                 case 0:
                 case 1:

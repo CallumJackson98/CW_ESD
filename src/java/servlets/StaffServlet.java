@@ -20,33 +20,46 @@ import model.DBBean;
  *
  * @author Jake
  */
-//@WebServlet(name = "ApprovalServlet", urlPatterns = {"/ApprovalServlet"})
-@WebServlet("/ApprovalServlet")
-public class ApprovalServlet extends HttpServlet {
+//@WebServlet(name = "StaffServlet", urlPatterns = {"/StaffServlet"})
+@WebServlet("/StaffServlet")
+public class StaffServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request,
-                    HttpServletResponse response) throws ServletException, IOException {
-        
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        // Get button from form
+        String sr = request.getParameter("apButton");
         String viewer;
         
         // Get connection to database
         DBBean db = new DBBean();
         boolean bool = db.getConnection();
         
+        // Set viewer
+        viewer = "PrescriptionApprovals.jsp";
+
         // Create String array list to store all users awaiting approval
         if(bool){
-            
-            ArrayList<String> approvalUsers = db.getApprovalUsers();
-            request.setAttribute("appUsers", approvalUsers);
-            
+
+            ArrayList<String> requestedPrescriptions = db.getRequestedPrescriptions();
+            request.setAttribute("reqPrescriptions", requestedPrescriptions);
+
         }
         
-        viewer = "SignupApprovals.jsp";
+        // Forward to page
         RequestDispatcher view = request.getRequestDispatcher(viewer);
         view.forward(request, response);
-                
+        
     }
-
 }
 

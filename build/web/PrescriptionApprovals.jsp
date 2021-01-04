@@ -1,44 +1,38 @@
 <%-- 
-    Document   : SignupApprovals
-    Created on : 11-Dec-2020, 17:09:27
+    Document   : PrescriptionApprovals
+    Created on : 15-Dec-2020, 12:46:52
     Author     : Jake
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Arrays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Signup Approvals</title>
+        <title>Prescription Approvals</title>
     </head>
-    
     <body>
-            
-        <!--    Header of the page    -->
-        <a href="AdminDashboard.jsp">Back to dashboard</a>
-        <h1>List of users awaiting approval:</h1>
-        <p>Please tick the users that you want to accept and then confirm. Any 
-            un-ticked users will be deleted from our records.</p>
-       
+        <a href="StaffDashboard.jsp">Back to dashboard</a>
+        <h1>Prescription Approvals</h1>
+        <p>From this page you can accept or reject prescription approvals.</p>
+        
         <!--    Get array list from servlet    -->
         <%
             
-            ArrayList<String> appUsers = (ArrayList<String>)request.getAttribute("appUsers"); 
+            ArrayList<String> requestedPrescriptions = (ArrayList<String>)request.getAttribute("reqPrescriptions"); 
             
         %> 
         
         <!--    Create table and populate with data from array list    -->
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
-                <th><b>Staff Member</b></th> 
+                <th><b>Prescription (ID, Username, drug)</b></th> 
                 <th><b>Index</b></th> 
             </tr>
             <%
                 int counter = 1;
-                for(String s:appUsers){%> 
+                for(String s:requestedPrescriptions){%> 
                 <tr> 
                     <td><%=s%></td> 
                     <td><%=counter%></td> 
@@ -47,9 +41,9 @@
         </table>
         
         <!--    Create dynamic table that has correct amount of checkboxes    -->
-        <form action="AcceptRejectServlet" method="post">
+        <form action="arPrescriptionServlet" method="post">
           
-            <%for(int i = 0; i < appUsers.size(); i++){%>
+            <%for(int i = 0; i < requestedPrescriptions.size(); i++){%>
             
                 Approve<%out.print(" " + (i+1));%><input type="checkbox" name="<%=i%>" id="<%=i%>" value="user" onclick="getChecked()">
                 <br>
@@ -65,8 +59,8 @@
             
             <input type="submit" value="Confirm">
         </form>
-        
-        <!--    Items to display which boxes are ticked    -->
+            
+            <!--    Items to display which boxes are ticked    -->
         <p>Users to be added/removed (indexes):<br></p>
         <p id="displayChecked">(None checked)</p>
         
@@ -76,16 +70,16 @@
                 
                 // Var to hold checked boxes
                 var checked = "";
-                var checkedNames = "";
+                var checkedIDs = "";
                 
-                <%for(int j = 0; j < appUsers.size(); j++){%>
+                <%for(int j = 0; j < requestedPrescriptions.size(); j++){%>
             
                     // Get the checkbox
                     var checkBox = document.getElementById("<%=j%>");
                     
                     // Create string list of elements
                     <%
-                        String[] splitChecked = appUsers.get(j).split("; ");
+                        String[] splitChecked = requestedPrescriptions.get(j).split(", ");
                         
                     %>
                     
@@ -93,7 +87,7 @@
                     if (checkBox.checked == true){
                         // Add id to tracker variable
                         checked = checked + "<%=j%> ";
-                        checkedNames = checkedNames + "<%=splitChecked[2]%> ";
+                        checkedIDs = checkedIDs + "<%=splitChecked[0]%> ";
                     }
                 
                 <%}%>
@@ -102,8 +96,8 @@
                     document.getElementById("displayChecked").innerHTML = "(None checked)";
                     document.getElementById("checked_hidden").value = "";
                 }else{
-                    document.getElementById("displayChecked").innerHTML = checked;
-                    document.getElementById("checked_hidden").value = checkedNames;
+                    document.getElementById("displayChecked").innerHTML = checkedIDs;
+                    document.getElementById("checked_hidden").value = checkedIDs;
                 }
                 
               }

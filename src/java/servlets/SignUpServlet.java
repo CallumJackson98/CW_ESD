@@ -35,6 +35,7 @@ public class SignUpServlet extends HttpServlet {
         String address = request.getParameter("address");
         String sType = request.getParameter("serviceType");
         String sRole = request.getParameter("staffRole");
+        String sShift = request.getParameter("shift");
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -62,15 +63,17 @@ public class SignUpServlet extends HttpServlet {
                 }
                 
                 // Create new record in TEMPSTAFF
-                db.addTempStaff("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+userName+"',"+"'"+pwd+"',"+"'"+role+"')");
+                db.addTempStaff("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+userName+"',"+"'"+pwd+"',"+"'"+role+"','"+sShift+"')");
 
             }else{// Patient sign up
 
                 // Create new record in USERS
                 db.addUser("('"+userName+"',"+"'"+pwd+"',"+"'"+"client"+"')");
                 
+                String fullName = fName + " " + sName;
+                
                 // Create new record in CLIENTS
-                db.addClient("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
+                db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
 
             }
 
