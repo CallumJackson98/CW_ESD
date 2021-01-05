@@ -69,7 +69,8 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("AcceptRejectServlet") || uri.endsWith("ViewAllUsers.jsp") 
                                 || uri.endsWith("DeleteUserServlet") || uri.endsWith("RequestPrescription.jsp") 
                                 || uri.endsWith("RequestPrescriptionServlet") || uri.endsWith("BookAppointment.jsp") 
-                                || uri.endsWith("BookAppointmentServlet")) 
+                                || uri.endsWith("BookAppointmentServlet") || uri.endsWith("ViewBookings.jsp") 
+                                || uri.endsWith("DeleteAppointmentServlet")) 
                                 && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
@@ -89,7 +90,8 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("StaffDashboard.jsp") || uri.endsWith("PatientDashboard.jsp") 
                                 || uri.endsWith("RequestPrescription.jsp") || uri.endsWith("RequestPrescriptionServlet") 
                                 || uri.endsWith("StaffServlet" ) || uri.endsWith("PrescriptionApprovals.jsp") || uri.endsWith("arPrescriptionServlet") 
-                                || uri.endsWith("BookAppointment.jsp") || uri.endsWith("BookAppointmentServlet"))
+                                || uri.endsWith("BookAppointment.jsp") || uri.endsWith("BookAppointmentServlet") || uri.endsWith("ViewBookings.jsp") 
+                                || uri.endsWith("DeleteAppointmentServlet"))
                                 && userType == 3){
                             res.sendRedirect("AdminDashboard.jsp");
                             this.context.log("Redirected admin");
@@ -100,7 +102,7 @@ public class AuthenticationFilter implements Filter {
                         this.context.log("No redirect");
                         
                     }catch(Exception e){
-                        res.sendRedirect("HomePage.html");
+                        //res.sendRedirect("HomePage.html");
                         this.context.log("Error for type filter. Session initialised incorrectly.");
                         this.context.log(e + "");
                     }

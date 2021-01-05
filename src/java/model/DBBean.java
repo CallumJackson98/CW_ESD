@@ -497,4 +497,52 @@ public class DBBean {
         
     }
     
+    // Function to return all appointments for specified user
+    public ArrayList<String> getAllAppointments(String userID){
+        
+        ArrayList allAppointments = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS");
+            String appString;
+            while(rs.next()){
+                
+                if(rs.getString(3).equals(userID)){
+                    
+                    System.out.println("INSIDE IF");
+                    
+                    appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                            rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                    allAppointments.add(appString);
+                    
+                }
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allAppointments;
+        
+    }
+    
+    // Function to delete an appointment
+    public void deleteAppointment(String appID){
+        
+        // Delete users
+        try{
+            
+            // Delete from clients or employees first (holds foreign key)
+            PreparedStatement st = con.prepareStatement("DELETE FROM BOOKING_SLOTS WHERE SID = ?");
+            st.setString(1, appID);
+            st.executeUpdate();
+            
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+    }
+    
 }
