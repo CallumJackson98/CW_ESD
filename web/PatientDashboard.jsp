@@ -25,5 +25,6 @@
             <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
             <input type="submit" value="Logout" >
         </form>
+            
     </body>
 </html>

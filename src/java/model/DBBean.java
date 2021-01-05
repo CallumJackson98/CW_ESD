@@ -498,7 +498,7 @@ public class DBBean {
     }
     
     // Function to return all appointments for specified user
-    public ArrayList<String> getAllAppointments(String userID){
+    public ArrayList<String> getAllAppointments(String userID, String type){
         
         ArrayList allAppointments = new ArrayList<String>();
         
@@ -508,14 +508,29 @@ public class DBBean {
             String appString;
             while(rs.next()){
                 
-                if(rs.getString(3).equals(userID)){
+                if(type.equals("Staff")){
                     
-                    System.out.println("INSIDE IF");
+                    if(rs.getString(2).equals(userID)){
+
+                        //System.out.println("INSIDE IF");
+
+                        appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                                rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                        allAppointments.add(appString);
+
+                    }
                     
-                    appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
-                            rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
-                    allAppointments.add(appString);
+                }else{
                     
+                    if(rs.getString(3).equals(userID)){
+
+                        //System.out.println("INSIDE IF");
+
+                        appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                                rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                        allAppointments.add(appString);
+
+                    }
                 }
                 
             }

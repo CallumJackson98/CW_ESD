@@ -59,9 +59,9 @@ public class PatientServlet extends HttpServlet {
             viewer = "BookAppointment.jsp";
         }else{
             // Array list of all bookings for this user
-            ArrayList<String> allAppointments = db.getAllAppointments(userID);
+            ArrayList<String> allAppointments = db.getAllAppointments(userID, "");
             
-            System.out.println("HERE " + allAppointments.size() + " " + userID);
+            //System.out.println("HERE " + allAppointments.size() + " " + userID);
             
             request.setAttribute("allApps", allAppointments);
             viewer = "ViewBookings.jsp";
