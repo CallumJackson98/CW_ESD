@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,10 @@ public class BookAppointmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        // Viewer
+        String viewer = "PatientDashboard.jsp";
+        boolean failed = true;
         
         // Get values from form
         String date = request.getParameter("date");
@@ -80,6 +85,7 @@ public class BookAppointmentServlet extends HttpServlet {
                     // If available, create booking
                     System.out.println("CREATE BOOKING FOR FT DOC");
                     db.addBooking(ftDocID, cID, formattedDate, hour+":"+mins);
+                    failed = false;
                    
                 }else{
                     
@@ -95,6 +101,7 @@ public class BookAppointmentServlet extends HttpServlet {
                             // Create booking
                             System.out.println("CREATE BOOKING FOR PT DOC");
                             db.addBooking(ptDocID, cID, formattedDate, hour+":"+mins);
+                            failed = false;
                             
                         }
                         
@@ -104,7 +111,7 @@ public class BookAppointmentServlet extends HttpServlet {
             }else{
                 
                 // Check nurse if day is correct (MON/FRI)
-                if(!"Monday".equals(day) || !"Friday".equals(day)){
+                if("Monday".equals(day) || "Friday".equals(day)){
                     
                     // Get ID of PT nurse
                     String ptNurseID = db.getStaffID("nurse", "PT");
@@ -115,6 +122,7 @@ public class BookAppointmentServlet extends HttpServlet {
                         // Create booking
                         System.out.println("CREATE BOOKING FOR PT NURSE");
                         db.addBooking(ptNurseID, cID, formattedDate, hour+":"+mins);
+                        failed = false;
                         
                     }
                     
@@ -129,7 +137,13 @@ public class BookAppointmentServlet extends HttpServlet {
         
         
         // Redirect to patient dashboard
-        response.sendRedirect("PatientDashboard.jsp");
+        RequestDispatcher view = request.getRequestDispatcher(viewer);
+        if(failed){
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>Booking not created successfully due to "
+                    + "staff member not being available.</font>");
+        }
+        view.include(request, response);
         
     }
 
