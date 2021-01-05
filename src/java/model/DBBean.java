@@ -391,10 +391,12 @@ public class DBBean {
         
         try{
             
-            String data = "('"+eID+"','"+cID+"','"+date+"','"+time+"')";
+            String data = "("+eID+","+cID+",'"+date+"','"+time+"')";
+            
+            System.out.println(data);
             
             state = con.createStatement();
-            state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (EID, CID, SDATE, STIME) VALUES" + data);
+            state.executeUpdate("INSERT INTO BOOKING_SLOTS (EID, CID, SDATE, STIME) VALUES" + data);
             state.close();
             
         }catch(Exception e){
@@ -440,6 +442,7 @@ public class DBBean {
         try {
             
             String uName = "";
+            String sID = "";
             
             state = con.createStatement();
             rs = state.executeQuery("SELECT * from EMPLOYEE");
@@ -448,10 +451,11 @@ public class DBBean {
                 if(rs.getString(5).equals(shift)){
                     
                     uName = rs.getString(4);
+                    sID = rs.getString(1);
                     
                     if(checkTypeMatches(sType, uName)){
                         
-                        return rs.getString(1);
+                        return sID;
                         
                     }
                     
@@ -469,13 +473,15 @@ public class DBBean {
     
     public boolean checkTypeMatches(String sType, String uName){
         
+        ResultSet rs1;
+        
         try {
             
             state = con.createStatement();
-            rs = state.executeQuery("SELECT * from USERS");
-            while(rs.next()){
+            rs1 = state.executeQuery("SELECT * from USERS");
+            while(rs1.next()){
                 
-                if(rs.getString(3).equals(sType) && rs.getString(1).equals(uName)){
+                if(rs1.getString(3).equals(sType) && rs1.getString(1).equals(uName)){
                     
                     return true;
                     
