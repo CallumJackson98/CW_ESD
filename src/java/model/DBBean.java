@@ -560,4 +560,284 @@ public class DBBean {
         
     }
     
+    // Verify that surgery slot is free
+    public boolean checkIfSurgeryExists(String date, String time, String cID){
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from OPERATIONS");
+            while(rs.next()){
+                
+                if(rs.getString(4).equals(date) && rs.getString(5).equals(time) && rs.getString(3).equals(cID)){
+                    
+                    return true;
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return false;
+        
+    }
+    
+    // Function to get client ID from booking when given booking ID
+    public String getClientIdFromBooking(String slotID){
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS" );
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(slotID)){
+                    
+                    return rs.getString(3);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Function to get employee ID from booking when given booking ID
+    public String getEmployeeIdFromBooking(String slotID){
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS" );
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(slotID)){
+                    
+                    return rs.getString(2);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Add operation to OPERATIONS table
+    public void addOperation(String eID, String cID, String date, String time, String slot, String charge){
+        
+        try{
+            
+            String data = "("+eID+","+cID+",'"+date+"','"+time+"',"+slot+","+charge+")";
+            
+            System.out.println(data);
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO OPERATIONS (EID, CID, ODATE, OTIME, NSLOT, CHARGE) VALUES" + data);
+            state.close();
+            
+        }catch(Exception e){
+            
+            System.err.println("Error: " + e);
+            
+        }
+        
+    }
+    
+    // Function to create prescription after consultation
+    public void createPrescription(String uName, String drugName){
+        
+        try{
+
+            String data = "('"+uName+"','"+drugName+"')";
+            
+            //System.out.println(data);
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO PRESCRIPTIONS (UNAME, DRUG_NAME) VALUES" + data);
+            state.close();
+
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+    }
+    
+    // Functionn to get uName of client given their ID
+    public String getClientUnameFromID(String cID){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from CLIENTS");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(cID)){
+                    
+                    return rs.getString(5);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Get cost of operation/consultation slot
+    public String getOperationSlotCost(String type){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from CONSULTATION_PRICES");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(type)){
+                    
+                    return rs.getString(2);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Functionn to see if use is private or not
+    public boolean isNhsClient(String cID){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from CLIENTS");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(cID)){
+                    
+                    if(rs.getString(4).equals("NHS")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return false;
+        
+    }
+    
+    // Function to get type of user with eID
+    public String getStaffType(String uName){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from EMPLOYEE");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(uName)){
+                    
+                    return rs.getString(3);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Function to get employee uName with given ID
+    public String getEmployeeUname(String eID){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from EMPLOYEE");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(eID)){
+                    
+                    return rs.getString(4);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Function to get employee type with given uName
+    public String getEmployeeType(String uName){
+
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from USERS");
+            while(rs.next()){
+                
+                if(rs.getString(1).equals(uName)){
+                    
+                    return rs.getString(3);
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return "null";
+        
+    }
+    
+    // Function to create invoice
+    public void createInvoice(String eID, String cID, String conCost, String opCost, String type){
+        
+        try{
+
+            String data = "("+eID+","+cID+","+conCost+","+opCost+",'"+type+"')";
+            
+            //System.out.println(data);
+            
+            state = con.createStatement();
+            state.executeUpdate("INSERT INTO INVOICES (EID, CID, CONSULTATIONCOST, OPERATIONCOST, IPAID) VALUES" + data);
+            state.close();
+
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+    }
+    
+    
 }
