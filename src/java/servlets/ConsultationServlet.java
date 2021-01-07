@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,7 @@ public class ConsultationServlet extends HttpServlet {
         String slotNum = request.getParameter("slotNum");
         boolean failed = false;
         String formattedDate = "";
+        String viewer = "StaffDashboard.jsp";
         
         // Initialise variables of empty
         if(!date.equals("")){
@@ -164,7 +166,15 @@ public class ConsultationServlet extends HttpServlet {
         } 
         
         // Return to dashboard - ADD ERROR MESSAGE HERE
-        response.sendRedirect("StaffDashboard.jsp");
+        //response.sendRedirect("StaffDashboard.jsp");
+        
+        // Redirect to staff dashboard
+        RequestDispatcher view = request.getRequestDispatcher(viewer);
+        if(failed){
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>Consultation not complete due to double booking of operation.</font>");
+        }
+        view.include(request, response);
         
     }
 

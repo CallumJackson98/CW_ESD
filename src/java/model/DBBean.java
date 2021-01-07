@@ -839,5 +839,29 @@ public class DBBean {
         
     }
     
+     // Function to return all invoices
+    public ArrayList<String> getAllInvoices(){
+        
+        ArrayList allInvoices = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from INVOICES");
+            String userString;
+            while(rs.next()){
+                
+                userString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6);
+                allInvoices.add(userString);
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allInvoices;
+        
+    }
+    
     
 }
