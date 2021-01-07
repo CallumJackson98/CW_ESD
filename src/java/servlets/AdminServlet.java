@@ -28,9 +28,12 @@ public class AdminServlet extends HttpServlet {
                     HttpServletResponse response) throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        String viewer;
+        String viewer= "";
         String sr = request.getParameter("srButton");
         String va = request.getParameter("vaButton");
+        String vi = request.getParameter("viButton");
+        
+        System.out.println(sr + " " + va + " " + vi);
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -39,19 +42,23 @@ public class AdminServlet extends HttpServlet {
         // If not null, do actions for signup reviews
         if(sr != null){
             
+            System.out.println("here");
+            
             // Set viewer
             viewer = "SignupApprovals.jsp";
             
             // Create String array list to store all users awaiting approval
             if(bool){
             
+                System.out.println("in bool here");
                 ArrayList<String> approvalUsers = db.getApprovalUsers();
                 request.setAttribute("appUsers", approvalUsers);
             
             }
            
         }else if(va != null){
-            // Else, action is view all records
+            
+            System.out.println("here1");
             
             // Set viewer
             viewer = "ViewAllUsers.jsp";
@@ -74,6 +81,8 @@ public class AdminServlet extends HttpServlet {
             }
             
         }else{
+        
+            System.out.println("here2");
             
             // Set viewer
             viewer = "ViewInvoices.jsp";
@@ -85,13 +94,14 @@ public class AdminServlet extends HttpServlet {
                 ArrayList<String> allInvoices = db.getAllInvoices();
                 request.setAttribute("allInvoices", allInvoices);
             
-        }
+            }
         
+        }
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);
         view.forward(request, response);
                 
-        }
+        
     }
 
 }
