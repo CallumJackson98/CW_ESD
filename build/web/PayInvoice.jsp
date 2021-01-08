@@ -1,7 +1,7 @@
 <%-- 
-    Document   : SignupApprovals
-    Created on : 11-Dec-2020, 17:09:27
-    Author     : Jake
+    Document   : PayInvoice
+    Created on : 08-Jan-2021, 12:24:09
+    Author     : callu
 --%>
 
 <%@page import="java.util.ArrayList"%>
@@ -12,33 +12,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Signup Approvals</title>
+        <title>Pay invoice</title>
     </head>
-    
     <body>
         
         <!--    Header of the page    -->
-        <a href="AdminDashboard.jsp">Back to dashboard</a>
-        <h1>List of users awaiting approval:</h1>
-        <p>Please tick the users that you want to accept and then confirm. Any 
-            un-ticked users will be deleted from our records.</p>
+        <a href="PatientDashboard.jsp">Back to dashboard</a>
+        <h1>List of invoices awaiting payment:</h1>
+        <p>Please tick the invoices that you want to pay and then confirm.</p>
        
         <!--    Get array list from servlet    -->
         <%
             
-            ArrayList<String> appUsers = (ArrayList<String>)request.getAttribute("appUsers"); 
+            ArrayList<String> unpaidInvoices = (ArrayList<String>)request.getAttribute("unpaidInvoices"); 
             
         %> 
+        
         
         <!--    Create table and populate with data from array list    -->
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
-                <th><b>Staff Member</b></th> 
+                <th><b>Invoice</b></th> 
                 <th><b>Index</b></th> 
             </tr>
             <%
                 int counter = 1;
-                for(String s:appUsers){%> 
+                for(String s:unpaidInvoices){%> 
                 <tr> 
                     <td><%=s%></td> 
                     <td><%=counter%></td> 
@@ -46,12 +45,13 @@
             <%counter++;}%> 
         </table>
         
+        
         <!--    Create dynamic table that has correct amount of checkboxes    -->
-        <form action="AcceptRejectServlet" method="post">
+        <form action="PayInvoiceServlet" method="post">
           
-            <%for(int i = 0; i < appUsers.size(); i++){%>
+            <%for(int i = 0; i < unpaidInvoices.size(); i++){%>
             
-                Approve<%out.print(" " + (i+1));%><input type="checkbox" name="<%=i%>" id="<%=i%>" value="user" onclick="getChecked()">
+                Pay<%out.print(" " + (i+1));%><input type="checkbox" name="<%=i%>" id="<%=i%>" value="user" onclick="getChecked()">
                 <br>
                 
             <%}%>
@@ -78,22 +78,23 @@
                 var checked = "";
                 var checkedNames = "";
                 
-                <%for(int j = 0; j < appUsers.size(); j++){%>
+                <%for(int j = 0; j < unpaidInvoices.size(); j++){%>
             
                     // Get the checkbox
                     var checkBox = document.getElementById("<%=j%>");
                     
                     // Create string list of elements
                     <%
-                        String[] splitChecked = appUsers.get(j).split("; ");
+                        String[] splitChecked = unpaidInvoices.get(j).split("||");
+                        
+                        System.out.println(splitChecked[0]);
                         
                     %>
-                    
                     // Check if checked
                     if (checkBox.checked == true){
                         // Add id to tracker variable
                         checked = checked + "<%=j%> ";
-                        checkedNames = checkedNames + "<%=splitChecked[2]%> ";
+                        checkedNames = checkedNames + "<%=splitChecked[0]%> ";
                     }
                 
                 <%}%>
@@ -108,6 +109,5 @@
                 
               }
         </script>
-        
     </body>
 </html>

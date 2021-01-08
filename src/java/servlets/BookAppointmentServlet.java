@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,10 @@ public class BookAppointmentServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        // Viewer
+        String viewer = "PatientDashboard.jsp";
+        boolean failed = true;
+        
         // Get values from form
         String date = request.getParameter("date");
         String hour = request.getParameter("hour");
@@ -42,7 +47,21 @@ public class BookAppointmentServlet extends HttpServlet {
         String day = request.getParameter("day_hidden");
         String staff = request.getParameter("staff");
         
-        System.out.println(date + " " + hour + " " + mins + " " + day + " " + uName);
+        // Convert date to accepted format.
+        String[] dateParts = date.split("-");
+        String formattedDate = "";
+        
+        for(int i = 2; i > -1; i--){
+            
+            if(i != 0){
+                formattedDate += dateParts[i] + "-";
+            }else{
+                formattedDate += dateParts[i];
+            }
+            
+        }
+        
+        System.out.println(formattedDate + " HERE!!!!!!!!!!!");
         
         // Create db instance
         DBBean db = new DBBean();
@@ -51,6 +70,9 @@ public class BookAppointmentServlet extends HttpServlet {
         // If there is a connection
         if(bool){
             
+            // Get client ID
+            String cID = db.getUserID(uName, "CLIENTS");
+            
             // Check if appointment is a duplicate for staff mem
             if(staff.equals("Doctor")){
                 
@@ -58,10 +80,12 @@ public class BookAppointmentServlet extends HttpServlet {
                 String ftDocID = db.getStaffID("doctor", "FT");
                 
                 // Check full time doctor (MON-FRI)
-                if(!db.checkIfAppExists(date, hour+":"+mins, ftDocID)){
+                if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ftDocID)){
                     
                     // If available, create booking
                     System.out.println("CREATE BOOKING FOR FT DOC");
+                    db.addBooking(ftDocID, cID, formattedDate, hour+":"+mins);
+                    failed = false;
                    
                 }else{
                     
@@ -72,10 +96,12 @@ public class BookAppointmentServlet extends HttpServlet {
                         String ptDocID = db.getStaffID("doctor", "PT");
                         
                         // If available create booking
-                        if(!db.checkIfAppExists(date, hour+":"+mins, ptDocID)){
+                        if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ptDocID)){
                             
                             // Create booking
                             System.out.println("CREATE BOOKING FOR PT DOC");
+                            db.addBooking(ptDocID, cID, formattedDate, hour+":"+mins);
+                            failed = false;
                             
                         }
                         
@@ -85,16 +111,18 @@ public class BookAppointmentServlet extends HttpServlet {
             }else{
                 
                 // Check nurse if day is correct (MON/FRI)
-                if(!"Monday".equals(day) || !"Friday".equals(day)){
+                if("Monday".equals(day) || "Friday".equals(day)){
                     
                     // Get ID of PT nurse
                     String ptNurseID = db.getStaffID("nurse", "PT");
                 
                     // Create booking if available
-                    if(!db.checkIfAppExists(date, hour+":"+mins, ptNurseID)){
+                    if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ptNurseID)){
                         
                         // Create booking
                         System.out.println("CREATE BOOKING FOR PT NURSE");
+                        db.addBooking(ptNurseID, cID, formattedDate, hour+":"+mins);
+                        failed = false;
                         
                     }
                     
@@ -109,7 +137,13 @@ public class BookAppointmentServlet extends HttpServlet {
         
         
         // Redirect to patient dashboard
-        response.sendRedirect("PatientDashboard.jsp");
+        RequestDispatcher view = request.getRequestDispatcher(viewer);
+        if(failed){
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>Booking not created successfully due to "
+                    + "staff member not being available.</font>");
+        }
+        view.include(request, response);
         
     }
 

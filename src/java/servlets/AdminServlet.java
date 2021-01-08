@@ -30,6 +30,8 @@ public class AdminServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String viewer;
         String sr = request.getParameter("srButton");
+        String va = request.getParameter("vaButton");
+        String vi = request.getParameter("viButton");
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -49,7 +51,8 @@ public class AdminServlet extends HttpServlet {
             
             }
            
-        }else{
+        }else if(va != null){
+            
             // Else, action is view all records
             
             // Set viewer
@@ -71,13 +74,35 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("allPrivate", allPrivatePat);
                 
             }
+         
+        }else if(vi != null){
             
+            // Set viewer
+            viewer = "ViewInvoices.jsp";
+            
+            // Forward list of invoices
+            if(bool){
+                
+                // Array list of all invoices
+                ArrayList<String> allInvoices = db.getAllInvoices();
+                request.setAttribute("allInvoices", allInvoices);
+            
+            }
+            
+        }else{
+
+            //Set viewer
+            viewer = "ChangeConsultationCost.jsp";
+
+            //Sent Array list of prices
+
         }
         
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);
         view.forward(request, response);
                 
+        
     }
 
 }

@@ -39,13 +39,15 @@
         <a href="PatientDashboard.jsp">Back to dashboard</a>
         <h1>Book Appointments</h1>
         
-        <p>From this page you can book an appointment. Please select a date and a time.</p>
+        <p>From this page you can book an appointment. Please select a date and a time. 
+            Doctor's appointments can be made from Monday to Friday. The Nurse is only
+        in from Tuesday to Thursday. If no slots are available, no appointment will be made.</p>
         
         <form action="BookAppointmentServlet" method="post">
             Date: <input type="text" id="datepicker" name="date">
             <br>
             <select name="hour">
-                <option>9</option>
+                <option>09</option>
                 <option>10</option>
                 <option>11</option>
                 <option>12</option>

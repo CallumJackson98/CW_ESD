@@ -39,6 +39,7 @@ public class StaffServlet extends HttpServlet {
         
         // Get button from form
         String sr = request.getParameter("apButton");
+        String uName = request.getParameter("uName_hidden");
         String viewer;
         
         // Get connection to database
@@ -46,7 +47,21 @@ public class StaffServlet extends HttpServlet {
         boolean bool = db.getConnection();
         
         // Set viewer
-        viewer = "PrescriptionApprovals.jsp";
+        if(sr != null){
+            viewer = "PrescriptionApprovals.jsp";
+        }else{
+            
+            String sID = "";
+            sID = db.getUserID(uName, "EMPLOYEE");
+            
+            // Array list of all bookings for this user
+            ArrayList<String> allAppointments = db.getAllAppointments(sID, "Staff");
+            
+            request.setAttribute("allApps", allAppointments);
+            
+            viewer = "StaffViewBookings.jsp";
+        }
+        
 
         // Create String array list to store all users awaiting approval
         if(bool){

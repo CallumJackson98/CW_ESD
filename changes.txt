@@ -1,0 +1,20 @@
+new:
+payinvoice.JSP
+changeconsultationcost.jsp
+changeconsultationcostservlet.java
+payinvoiceservlet.java
+
+
+edit
+admindashboard.jsp
+patientdashboard.jsp
+adminservlet.java
+patientservlet.java
+dbbean
+
+
+
+notes:
+admin signupapproval wont update DB
+
+
