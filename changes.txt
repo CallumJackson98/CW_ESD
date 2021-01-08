@@ -12,6 +12,9 @@ adminservlet.java
 patientservlet.java
 dbbean
 
+change invoices to add date paid
+
+
 
 
 notes:

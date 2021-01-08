@@ -47,7 +47,7 @@
     <body>
         
         <a href="AdminDashboard.jsp">Back to dashboard</a>
-        <h1>Book Appointments</h1>
+        <h1>Calculate Turnover</h1>
         
         <p>From this page you can calculate turnover within a given date range. 
             Please select a start date and an end date and click submit </p>
@@ -58,6 +58,16 @@
             <input type="submit" value="CalculateTurnover">
         </form>
         
+        
+        <%
+            String totalTurnover = (String) "";
+        %>
+        
+        <%
+            totalTurnover = (String) request.getAttribute("totalTurnover");
+        %>
+        
+        <input name="totalTurnover" value="£<%=totalTurnover%>"></input>
         
         
     </body>

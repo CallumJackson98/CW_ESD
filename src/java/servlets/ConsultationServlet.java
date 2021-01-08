@@ -151,6 +151,9 @@ public class ConsultationServlet extends HttpServlet {
                 System.out.println("here2");
                 String strConCost = Integer.toString(conCost);
                 
+                
+                System.out.println("creating invoice");
+                
                 // Create invoice
                 db.createInvoice(eID, cID, strConCost, charge, paid, "");
 

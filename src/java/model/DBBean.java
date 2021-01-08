@@ -822,11 +822,13 @@ public class DBBean {
     
     // Function to create invoice
     public void createInvoice(String eID, String cID, String conCost, String opCost, String type, String datePaid){
-        
+        System.out.println("into func");
         try{
             String data = "("+eID+","+cID+","+conCost+","+opCost+",'"+type+"','"+datePaid+"')";
             
-            //System.out.println(data);
+            System.out.println("try works");
+            
+            System.out.println(data);
             
             state = con.createStatement();
             state.executeUpdate("INSERT INTO INVOICES (EID, CID, CONSULTATIONCOST, OPERATIONCOST, IPAID, DATEPAID) VALUES" + data);
@@ -904,13 +906,22 @@ public class DBBean {
     
     
     // Function to set consultation costs currently setup on the system
-    public void setInvoicePaid(String IID){
+    public void setInvoicePaid(String IID, String date){
         
         try {
-            PreparedStatement statement = con.prepareStatement("UPDATE INVOICES SET IPAID = 'true' WHERE IID = ?");
-            statement.setString(1, IID);
+            System.out.println("here66");
+            PreparedStatement statement1 = con.prepareStatement("UPDATE INVOICES SET IPAID = 'true' WHERE IID = ?");
             
-            statement.executeUpdate();
+            statement1.setString(1, IID);
+            
+            statement1.executeUpdate();
+            System.out.println("here77");
+            PreparedStatement statement2 = con.prepareStatement("UPDATE INVOICES SET DATEPAID = ? WHERE IID = ?");
+            
+            statement2.setString(1, date);
+            statement2.setString(2, IID);
+            
+            statement2.executeUpdate();
             
         } catch (SQLException e) {
             System.err.println("Error: " + e);
@@ -918,25 +929,37 @@ public class DBBean {
         
     }
     
-//    
-//    public ArrayList<String> getPaidInvoices(String startDate, String endDate){
-//        
-//        ArrayList<String> paidInvoices = new ArrayList<String>;
-//        
-//        
-//        try {
-//            PreparedStatement statement = con.prepareStatement("SELECT CONSULTATIONCOST AND OPERATIONCOST FROM INVOICES WHERE ");
-//            statement.setString(1, IID);
-//            
-//            statement.executeUpdate();
-//            
-//        } catch (SQLException e) {
-//            System.err.println("Error: " + e);
-//        }
-//        
-//        return;
-//        
-//    }
+    
+    public ArrayList<String> getPaidInvoices(String startDate, String endDate){
+        
+        ArrayList<String> paidInvoices = new ArrayList<String>();
+        
+        
+        try {
+            PreparedStatement statement = con.prepareStatement("SELECT CONSULTATIONCOST, OPERATIONCOST FROM INVOICES WHERE DATEPAID > ? AND DATEPAID < ? AND IPAID = 'true'");
+            statement.setString(1, startDate);
+            statement.setString(2, endDate);
+            
+            rs = statement.executeQuery();
+            
+            String paidInvoice;
+            System.out.println("hererere");
+            
+            while(rs.next()){
+                
+                paidInvoice = rs.getString(1) + ' ' + rs.getString(2);
+                System.out.println(paidInvoice);
+                paidInvoices.add(paidInvoice);
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        
+        return paidInvoices;
+        
+    }
     
     
 }

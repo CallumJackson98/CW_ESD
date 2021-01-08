@@ -7,12 +7,14 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DBBean;
 
 /**
  *
@@ -20,8 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CalculateTurnoverServlet", urlPatterns = {"/CalculateTurnoverServlet"})
 public class CalculateTurnoverServlet extends HttpServlet {
+    
+    
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DBBean db = new DBBean();
+        boolean bool = db.getConnection();
         response.setContentType("text/html;charset=UTF-8");
         
         // Viewer
@@ -60,9 +67,20 @@ public class CalculateTurnoverServlet extends HttpServlet {
         }
         
         
+        ArrayList<String> paidInvoices = new ArrayList<String>();
+        paidInvoices = db.getPaidInvoices(formattedStartDate, formattedEndDate);
+        
+        double totalTurnover = 0;
+        for (int i = 0 ; i < paidInvoices.size() ; i++){
+            totalTurnover += Double.parseDouble(paidInvoices.get(i).split(" ")[0]) + Double.parseDouble(paidInvoices.get(i).split(" ")[1]);
+        }
+        
+        String totalTurnoverString = Double.toString(totalTurnover);
+        
+        request.setAttribute("totalTurnover", totalTurnoverString);
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);
-        view.forward(request, response);
+        view.include(request, response);
         
     }
 

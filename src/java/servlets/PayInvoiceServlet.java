@@ -6,12 +6,13 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import model.DBBean;
 
 
@@ -35,6 +36,13 @@ public class PayInvoiceServlet extends HttpServlet {
         
         System.out.println(arType + " checked: " + checked);
         
+        LocalDate localDate = LocalDate.now();//For reference
+        System.out.println(localDate);
+        
+        String date = localDate.toString();
+        
+        System.out.println(date);
+        
         if(!"".equals(checked)){
             
             // Split checked string into individual nums
@@ -43,15 +51,17 @@ public class PayInvoiceServlet extends HttpServlet {
             if(bool){
                 // For each row selected, perform action
                 for(int i = 0; i < splitChecked.length; i++){
-                    
+                    System.out.println("here55");
                     // Call acceptRejectStaff function from DBBEAN
-                    db.setInvoicePaid(splitChecked[0]);
+                    db.setInvoicePaid(splitChecked[0], date);
                     
                 }
             }
         }
         
         response.sendRedirect("PatientDashboard.jsp");
-                
+        
     }
+
+ 
 }
