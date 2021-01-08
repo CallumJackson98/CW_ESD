@@ -32,6 +32,7 @@ public class AdminServlet extends HttpServlet {
         String sr = request.getParameter("srButton");
         String va = request.getParameter("vaButton");
         String vi = request.getParameter("viButton");
+        String ccc = request.getParameter("cccButton");
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -89,13 +90,17 @@ public class AdminServlet extends HttpServlet {
             
             }
             
-        }else{
+        }else if(ccc != null){
 
             //Set viewer
             viewer = "ChangeConsultationCost.jsp";
-
+            
             //Sent Array list of prices
 
+        }else{
+            //Set viewer
+            viewer = "CalculateTurnover.jsp";
+            
         }
         
         

@@ -39,14 +39,14 @@ public class PayInvoiceServlet extends HttpServlet {
             
             // Split checked string into individual nums
             String[] splitChecked = checked.split(" ");
-
+            
             if(bool){
                 // For each row selected, perform action
                 for(int i = 0; i < splitChecked.length; i++){
-
+                    
                     // Call acceptRejectStaff function from DBBEAN
-                    db.acceptRejectStaff(arType, splitChecked[i]);
-
+                    db.setInvoicePaid(splitChecked[0]);
+                    
                 }
             }
         }

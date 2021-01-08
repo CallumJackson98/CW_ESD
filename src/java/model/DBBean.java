@@ -821,16 +821,15 @@ public class DBBean {
     }
     
     // Function to create invoice
-    public void createInvoice(String eID, String cID, String conCost, String opCost, String type){
+    public void createInvoice(String eID, String cID, String conCost, String opCost, String type, String datePaid){
         
         try{
-
-            String data = "("+eID+","+cID+","+conCost+","+opCost+",'"+type+"')";
+            String data = "("+eID+","+cID+","+conCost+","+opCost+",'"+type+"','"+datePaid+"')";
             
             //System.out.println(data);
             
             state = con.createStatement();
-            state.executeUpdate("INSERT INTO INVOICES (EID, CID, CONSULTATIONCOST, OPERATIONCOST, IPAID) VALUES" + data);
+            state.executeUpdate("INSERT INTO INVOICES (EID, CID, CONSULTATIONCOST, OPERATIONCOST, IPAID, DATEPAID) VALUES" + data);
             state.close();
 
         }catch(Exception e){
@@ -850,7 +849,7 @@ public class DBBean {
             String userString;
             while(rs.next()){
                 
-                userString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6);
+                userString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6) + " || " + rs.getString(7);
                 allInvoices.add(userString);
                 
             }
@@ -870,7 +869,7 @@ public class DBBean {
             PreparedStatement statement = con.prepareStatement("UPDATE CONSULTATION_PRICES SET PCOST = ? WHERE PTYPE = ?");
             statement.setString(1, newPrice);
             statement.setString(2, conType);
-            statement.executeQuery();
+            statement.executeUpdate();
             
         } catch (SQLException e) {
             System.err.println("Error: " + e);
@@ -891,7 +890,7 @@ public class DBBean {
             
             while(rs.next()){
                 System.out.println("jere2");
-                unpaidString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6);
+                unpaidString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6) + " || " + rs.getString(7);
                 unpaidInvoices.add(unpaidString);
                 
             }
@@ -908,16 +907,36 @@ public class DBBean {
     public void setInvoicePaid(String IID){
         
         try {
-            PreparedStatement statement = con.prepareStatement("UPDATE INVOCEIS SET IPAID = 'true' WHERE IID = ?");
+            PreparedStatement statement = con.prepareStatement("UPDATE INVOICES SET IPAID = 'true' WHERE IID = ?");
             statement.setString(1, IID);
             
-            statement.executeQuery();
+            statement.executeUpdate();
             
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
         
     }
+    
+//    
+//    public ArrayList<String> getPaidInvoices(String startDate, String endDate){
+//        
+//        ArrayList<String> paidInvoices = new ArrayList<String>;
+//        
+//        
+//        try {
+//            PreparedStatement statement = con.prepareStatement("SELECT CONSULTATIONCOST AND OPERATIONCOST FROM INVOICES WHERE ");
+//            statement.setString(1, IID);
+//            
+//            statement.executeUpdate();
+//            
+//        } catch (SQLException e) {
+//            System.err.println("Error: " + e);
+//        }
+//        
+//        return;
+//        
+//    }
     
     
 }

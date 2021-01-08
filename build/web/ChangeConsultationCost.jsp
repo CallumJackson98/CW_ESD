@@ -17,7 +17,7 @@
         <p>To make alterations to consultation costs please enter
             the new values and click submit.</p>
 
-        <form action="ChangeConsultationCostServlet" method="post">
+        <form action="ChangeConsultationCostServlet2" method="post">
             Doctor Consultation Price: <input type="text" name="doctorPrice">
             <br>
             Nurse Consultation Price: <input type="text" name="nursePrice">

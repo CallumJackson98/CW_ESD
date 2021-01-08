@@ -152,7 +152,7 @@ public class ConsultationServlet extends HttpServlet {
                 String strConCost = Integer.toString(conCost);
                 
                 // Create invoice
-                db.createInvoice(eID, cID, strConCost, charge, paid);
+                db.createInvoice(eID, cID, strConCost, charge, paid, "");
 
                 // Delete from BOOKING_SLOTS
                 db.deleteAppointment(appID);
