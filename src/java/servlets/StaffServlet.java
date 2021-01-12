@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,8 +55,12 @@ public class StaffServlet extends HttpServlet {
             String sID = "";
             sID = db.getUserID(uName, "EMPLOYEE");
             
+            // Get date to search appointments for
+            LocalDate localDate = LocalDate.now();//For reference
+            String date = localDate.toString();
+            
             // Array list of all bookings for this user
-            ArrayList<String> allAppointments = db.getAllAppointments(sID, "Staff");
+            ArrayList<String> allAppointments = db.getAllAppointmentsToday(sID, date);
             
             request.setAttribute("allApps", allAppointments);
             

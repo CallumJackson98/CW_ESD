@@ -46,6 +46,11 @@ public class BookAppointmentServlet extends HttpServlet {
         String uName = request.getParameter("uName_hidden");
         String day = request.getParameter("day_hidden");
         String staff = request.getParameter("staff");
+        String empuName = "";
+        String empType = "";
+        
+        // Split staff string into sections SHIFT, uNAME, eID
+        String[] staffInfo = staff.split(" - ");
         
         // Convert date to accepted format.
         String[] dateParts = date.split("-");
@@ -73,68 +78,56 @@ public class BookAppointmentServlet extends HttpServlet {
             // Get client ID
             String cID = db.getUserID(uName, "CLIENTS");
             
-            // Check if appointment is a duplicate for staff mem
-            if(staff.equals("Doctor")){
-                
-                // Get ID of FT doc
-                String ftDocID = db.getStaffID("doctor", "FT");
+            // Get staff type
+            empuName = db.getEmployeeUname(staffInfo[2]);
+            empType = db.getEmployeeType(empuName);
+            
+            // Check if FT or PT and reject if wrong day
+            if(staffInfo[0].equals("FT")){
                 
                 // Check full time doctor (MON-FRI)
-                if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ftDocID)){
+                if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", staffInfo[2])){
                     
                     // If available, create booking
                     System.out.println("CREATE BOOKING FOR FT DOC");
-                    db.addBooking(ftDocID, cID, formattedDate, hour+":"+mins);
-                    failed = false;
-                   
-                }else{
-                    
-                    // Else: Check pt doctor if day is correct (TUE-THUR)
-                    if(!"Monday".equals(day) || !"Friday".equals(day)){
-                        
-                        // Get ID of PT doc
-                        String ptDocID = db.getStaffID("doctor", "PT");
-                        
-                        // If available create booking
-                        if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ptDocID)){
-                            
-                            // Create booking
-                            System.out.println("CREATE BOOKING FOR PT DOC");
-                            db.addBooking(ptDocID, cID, formattedDate, hour+":"+mins);
-                            failed = false;
-                            
-                        }
-                        
-                    }
-   
+                    db.addBooking(staffInfo[2], cID, formattedDate, hour+":"+mins);
+                    failed = false;           
+
                 }
             }else{
-                
-                // Check nurse if day is correct (MON/FRI)
-                if("Monday".equals(day) || "Friday".equals(day)){
+                if(empType.equals("doctor")){
+                    if(!"Friday".equals(day) && !"Monday".equals(day) ){
                     
-                    // Get ID of PT nurse
-                    String ptNurseID = db.getStaffID("nurse", "PT");
-                
-                    // Create booking if available
-                    if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", ptNurseID)){
-                        
-                        // Create booking
-                        System.out.println("CREATE BOOKING FOR PT NURSE");
-                        db.addBooking(ptNurseID, cID, formattedDate, hour+":"+mins);
-                        failed = false;
-                        
-                    }
+                        System.out.println(day);
+
+                        // Check full time doctor (MON-FRI)
+                        if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", staffInfo[2])){
+
+                            // If available, create booking
+                            System.out.println("CREATE BOOKING FOR PT DOC");
+                            db.addBooking(staffInfo[2], cID, formattedDate, hour+":"+mins);
+                            failed = false;    
+
+                        }
+                    } 
+                }else{
                     
+                    if("Friday".equals(day) || "Monday".equals(day)){
+                        
+                        // Check full time doctor (MON-FRI)
+                        if(!db.checkIfAppExists(formattedDate, hour+":"+mins+":00", staffInfo[2])){
+
+                            // If available, create booking
+                            System.out.println("CREATE BOOKING FOR PT NURSE");
+                            db.addBooking(staffInfo[2], cID, formattedDate, hour+":"+mins);
+                            failed = false;    
+
+                        }                   
+                    } 
                 }
-                
-                
-                
-                
             }
             
         }
-        
         
         // Redirect to patient dashboard
         RequestDispatcher view = request.getRequestDispatcher(viewer);
@@ -147,4 +140,5 @@ public class BookAppointmentServlet extends HttpServlet {
         
     }
 
+            
 }

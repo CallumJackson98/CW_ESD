@@ -18,7 +18,7 @@ import model.DBBean;
 
 /**
  *
- * @author Jake
+ * @author Jake and callu
  */
 //@WebServlet(name = "AdminServlet", urlPatterns = {"/ApprovalServlet"})
 @WebServlet("/ApprovalServlet")
@@ -32,6 +32,7 @@ public class AdminServlet extends HttpServlet {
         String sr = request.getParameter("srButton");
         String va = request.getParameter("vaButton");
         String vi = request.getParameter("viButton");
+        String ccc = request.getParameter("cccButton");
         
         System.out.println(sr + " " + va + " " + vi);
         
@@ -80,7 +81,7 @@ public class AdminServlet extends HttpServlet {
                 
             }
             
-        }else{
+        }else if(vi != null){
         
             System.out.println("here2");
             
@@ -96,6 +97,15 @@ public class AdminServlet extends HttpServlet {
             
             }
         
+        }else if(ccc != null){
+            
+            //Set viewer
+            viewer = "ChangeConsultationCost.jsp";
+            
+        }else{
+            //Set viewer
+            viewer = "CalculateTurnover.jsp";
+            
         }
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);

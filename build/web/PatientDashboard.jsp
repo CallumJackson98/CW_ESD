@@ -22,6 +22,7 @@
             <input type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
             <input type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">
             <input type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">
+            <input type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">
             <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
             <input type="submit" value="Logout" >
         </form>

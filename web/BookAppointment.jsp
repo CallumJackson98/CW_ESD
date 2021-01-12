@@ -4,6 +4,7 @@
     Author     : Jake
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,6 +35,8 @@
         
         <%
             String userName = (String) session.getAttribute("user");
+            ArrayList<String> allUsers = (ArrayList<String>)request.getAttribute("allStaff");
+            
         %>
         
         <a href="PatientDashboard.jsp">Back to dashboard</a>
@@ -44,7 +47,7 @@
         in from Tuesday to Thursday. If no slots are available, no appointment will be made.</p>
         
         <form action="BookAppointmentServlet" method="post">
-            Date: <input type="text" id="datepicker" name="date">
+            Date: <input type="text" id="datepicker" name="date" required>
             <br>
             <select name="hour">
                 <option>09</option>
@@ -63,9 +66,11 @@
                 <option>30</option>
                 <option>45</option>
             </select>
-            <select name="staff">
-                <option>Doctor</option>
-                <option>Nurse</option>
+            <select name="staff" id="staffSelect">
+                <%
+                for(String s:allUsers){%> 
+                <option><%=s%></option>
+                <%}%>
             </select>
             <br>
             <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">

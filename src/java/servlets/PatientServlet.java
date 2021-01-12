@@ -40,6 +40,7 @@ public class PatientServlet extends HttpServlet {
         String viewer;
         String rp = request.getParameter("rpButton");
         String ba = request.getParameter("baButton");
+        String vb = request.getParameter("vbButton");
         String uName = request.getParameter("uName_hidden");
         String userID = "";
         
@@ -56,15 +57,28 @@ public class PatientServlet extends HttpServlet {
         if(rp != null){
             viewer = "RequestPrescription.jsp";
         }else if(ba != null){
+            
+            // Array list of all staff.
+            ArrayList<String> allStaff = db.getAllStaff();
+            request.setAttribute("allStaff", allStaff);
+            
             viewer = "BookAppointment.jsp";
-        }else{
+            
+        }else if(vb != null){
+            
             // Array list of all bookings for this user
             ArrayList<String> allAppointments = db.getAllAppointments(userID, "");
             
             //System.out.println("HERE " + allAppointments.size() + " " + userID);
-            
             request.setAttribute("allApps", allAppointments);
             viewer = "ViewBookings.jsp";
+            
+        }else{
+            
+            ArrayList<String> unpaidInvoices = db.getUnpaidInvoices(userID);
+            request.setAttribute("unpaidInvoices", unpaidInvoices);
+            viewer = "PayInvoice.jsp";
+            
         }
         
         
