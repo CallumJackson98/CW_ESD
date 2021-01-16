@@ -50,7 +50,7 @@
         <h1>Calculate Turnover</h1>
         
         <p>From this page you can calculate turnover within a given date range. 
-            Please select a start date and an end date and click submit </p>
+            Please select a start date and an end date and click submit.</p>
         
         <form action="CalculateTurnoverServlet" method="post">
             Start Date: <input type="text" id="startdatepicker" name="startDate">

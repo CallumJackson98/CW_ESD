@@ -62,8 +62,6 @@ public class AuthenticationFilter implements Filter {
                         //this.context.log("USER HERE HERE HERE HERE ---->" + userType + uri);
                         System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
                         
-                        System.out.println("USER HERE HERE HERE HERE ---->" + userType + uri);
-                        
                         // Redirected if they go to the pages in the loop based on userType
                         if(session != null && (uri.endsWith("login.html") || uri.endsWith("PatientLogin.html") 
                                 || uri.endsWith("PatientDashboard.jsp") || uri.endsWith("AdminDashboard.jsp") 
@@ -73,7 +71,10 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("RequestPrescriptionServlet") || uri.endsWith("BookAppointment.jsp") 
                                 || uri.endsWith("BookAppointmentServlet") || uri.endsWith("ViewBookings.jsp") 
                                 || uri.endsWith("DeleteAppointmentServlet") || uri.endsWith("ViewInvoiceServlet") 
-                                || uri.endsWith("ViewInvoices.jsp")) 
+                                || uri.endsWith("ViewInvoices.jsp") || uri.endsWith("ChangeConsultationCostServlet2") 
+                                || uri.endsWith("ChangeConsultationCost.jsp") || uri.endsWith("CalculateTurnover.jsp") 
+                                || uri.endsWith("CalculateTurnoverServlet") || uri.endsWith("PayInvoiceServlet") 
+                                || uri.endsWith("PayInvoice.jsp")) 
                                 && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
@@ -86,7 +87,10 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("DeleteUserServlet") || uri.endsWith("StaffServlet") 
                                 || uri.endsWith("PrescriptionApprovals.jsp") || uri.endsWith("arPrescriptionServlet") 
                                 || uri.endsWith("StaffViewBookings.jsp") || uri.endsWith("ConsultationServlet") 
-                                || uri.endsWith("ViewInvoiceServlet") || uri.endsWith("ViewInvoices.jsp")) && userType == 2){
+                                || uri.endsWith("ViewInvoiceServlet") || uri.endsWith("ViewInvoices.jsp") 
+                                || uri.endsWith("ChangeConsultationCostServlet2") 
+                                || uri.endsWith("ChangeConsultationCost.jsp") || uri.endsWith("CalculateTurnover.jsp") 
+                                || uri.endsWith("CalculateTurnoverServlet")) && userType == 2){
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }
@@ -96,7 +100,9 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("RequestPrescription.jsp") || uri.endsWith("RequestPrescriptionServlet") 
                                 || uri.endsWith("StaffServlet" ) || uri.endsWith("PrescriptionApprovals.jsp") || uri.endsWith("arPrescriptionServlet") 
                                 || uri.endsWith("BookAppointment.jsp") || uri.endsWith("BookAppointmentServlet") || uri.endsWith("ViewBookings.jsp") 
-                                || uri.endsWith("DeleteAppointmentServlet") || uri.endsWith("StaffViewBookings.jsp") || uri.endsWith("ConsultationServlet"))
+                                || uri.endsWith("DeleteAppointmentServlet") || uri.endsWith("StaffViewBookings.jsp") || uri.endsWith("ConsultationServlet") 
+                                || uri.endsWith("PayInvoiceServlet") 
+                                || uri.endsWith("PayInvoice.jsp"))
                                 && userType == 3){
                             res.sendRedirect("AdminDashboard.jsp");
                             this.context.log("Redirected admin");

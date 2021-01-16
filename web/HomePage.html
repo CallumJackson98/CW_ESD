@@ -9,75 +9,106 @@ and open the template in the editor.
         <title>Welcome</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+            
+            html, body {
+                margin: 0;
+                border: 0;
+            }
+            
             body {
-                background: linear-gradient(to top left, #99ccff 0%, #666699 100%);
-                background-repeat: no-repeat; 
-                background-size: contain;
-                height: 920px;
-                width: 100%;
-                margin: 10px;
-                text-align: left;
+                background-color: #F5F5F5;
+                height: 100vh;
             }
-            a{
-                text-align: left;
-                padding:0px 10px;
-                font-size: 40px;
-                font-weight: bold;
-            }
-            a:visited {
-                color: black;
-            }
-            h2{
-                position: relative;
-                left: 10px;
-                top: -15px;
-                font-size: 15px;
-            }
-            button{
-                background-color: #4CAF50; /* Green /
-                border: none;
-                color: white;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 20px;
-            }
-            button:hover{
-                background-color: #009933; / Dark Green */
-            }
-            .labelbutton{
-                background-color: transparent;
-                border: 1px solid black;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 20px; 
-            }
-            .labelbutton:hover{
-                background-color: transparent;
+            
+            * {
+                box-sizing: border-box;
             }
 
+            a {
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 24px;
+                color: #edf0f1;
+                text-decoration: none;
+            }
+            
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 10%;
+            }
+            
+            .content {
+                max-width: 1180px;
+                margin: auto;
+                background-color: #2d3144;
+                height: 100%;
+            }
+            
+            button {
+                color: #fff !important;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
+                text-decoration: none;
+                background: #ed3330;
+                padding: 20px;
+                border-radius: 5px;
+                display: inline-block;
+                border: none;
+                transition: all 0.4s ease 0s;
+            }
+            
+            button:hover {
+                background: #434343;
+                letter-spacing: 1px;
+                -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.60);
+                -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.60);
+                box-shadow: 5px 40px -10px rgba(0,0,0,0.60);
+                transition: all 0.4s ease 0s;
+            }
+            
+            .flexbox1{
+                display: flex;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+      
+            .buttonStyle1 {
+                background: #6b944a
+            }
+            
+            .buttonStyle2 {
+                background: #23408e;
+            }
         </style>
-        
     </head>
     <body>
-        <h1><u>SmartCare Surgery</u></h1>
-        <br>
-        <div>Welcome to our site.</div>
-        <form action="login.html" method="get">
-            Please select your role:
-            <button name="staffLoginPage" type="submit" value="staff">Doctor/Nurse</button>
-            <button name="patientLoginPage" type="submit" value="patient" formaction="PatientLogin.html">Patient</button>
-            <button name="adminLoginPage" type="submit" value="admin" formaction="login.html">Admin</button>
-            <br><br>
-            <label>Don't have an account? Sign up:</label>
-            <button name="pSignUpPage" type="submit" formaction="SignUp.jsp">Patient Sign Up</button>
-            <button name="sSignUpPage" type="submit" formaction="StaffSignUp.jsp">Staff Sign Up</button>
-        </form>
+        <img src="logo.png" alt="Italian Trulli">
+        <div class="content">
+            <header>
+                <a href="HomePage.html">SmartCare Surgery</a>
+                <nav>
+                    <!-- Navigation Bar -->
+                    <form action="login.html" method="get">
+                        <!-- No navigation required on homepage. -->
+                    </form>
+                </nav>
+                <!-- Link to Contact Page -->
+                <a href="#">Contact</a>
+            </header>
+            <div class="flexbox1">
+                <form action="login.html" method="get">
+                    <button class="buttonStyle1" name="patientLoginPage" type="submit" value="patient" formaction="PatientLogin.html">Patient Login</button>
+                    <button class="buttonStyle1" name="staffLoginPage" type="submit" value="staff">Staff Login</button>
+                    <button class="buttonStyle1" name="adminLoginPage" type="submit" value="admin" formaction="login.html">Admin Login</button>
+                    <button class="buttonStyle2" name="pSignUpPage" type="submit" formaction="SignUp.jsp">Patient Sign Up</button>
+                    <button class="buttonStyle2" name="sSignUpPage" type="submit" formaction="StaffSignUp.jsp">Staff Sign Up</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

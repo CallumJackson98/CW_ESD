@@ -16,7 +16,7 @@
     </head>
     
     <body>
-        
+            
         <!--    Header of the page    -->
         <a href="AdminDashboard.jsp">Back to dashboard</a>
         <h1>List of users awaiting approval:</h1>

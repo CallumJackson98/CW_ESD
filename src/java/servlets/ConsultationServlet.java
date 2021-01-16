@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -123,6 +124,8 @@ public class ConsultationServlet extends HttpServlet {
             
                 // Set service type
                 String paid;
+                LocalDate localDate = LocalDate.now();
+                String paidDate = localDate.toString();
                 if(db.isNhsClient(cID)){
                     
                     paid = "true";
@@ -130,6 +133,7 @@ public class ConsultationServlet extends HttpServlet {
                 }else{
                     
                     paid = "false";
+                    paidDate = "";
                     
                 }
                 
@@ -151,11 +155,8 @@ public class ConsultationServlet extends HttpServlet {
                 System.out.println("here2");
                 String strConCost = Integer.toString(conCost);
                 
-                
-                System.out.println("creating invoice");
-                
                 // Create invoice
-                db.createInvoice(eID, cID, strConCost, charge, paid, "");
+                db.createInvoice(eID, cID, strConCost, charge, paid, paidDate);
 
                 // Delete from BOOKING_SLOTS
                 db.deleteAppointment(appID);

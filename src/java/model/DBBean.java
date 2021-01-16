@@ -543,6 +543,39 @@ public class DBBean {
         
     }
     
+      // Function to return all appointments for specified user
+    public ArrayList<String> getAllAppointmentsToday(String userID, String date){
+        
+        ArrayList allAppointments = new ArrayList<String>();
+        
+        try {
+            // Prepared statement
+            PreparedStatement st = con.prepareStatement("SELECT * from BOOKING_SLOTS WHERE SDATE = ?");
+            st.setString(1, date);
+            rs = st.executeQuery();
+            
+            String appString;
+            while(rs.next()){
+                
+                if(rs.getString(2).equals(userID)){
+
+                    //System.out.println("INSIDE IF");
+
+                    appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                            rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                    allAppointments.add(appString);
+
+                }
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allAppointments;
+        
+    }
+    
     // Function to delete an appointment
     public void deleteAppointment(String appID){
         
@@ -821,14 +854,13 @@ public class DBBean {
     }
     
     // Function to create invoice
-    public void createInvoice(String eID, String cID, String conCost, String opCost, String type, String datePaid){
-        System.out.println("into func");
+    public void createInvoice(String eID, String cID, String conCost, String opCost, String type,  String datePaid){
+        
         try{
+
             String data = "("+eID+","+cID+","+conCost+","+opCost+",'"+type+"','"+datePaid+"')";
             
-            System.out.println("try works");
-            
-            System.out.println(data);
+            //System.out.println(data);
             
             state = con.createStatement();
             state.executeUpdate("INSERT INTO INVOICES (EID, CID, CONSULTATIONCOST, OPERATIONCOST, IPAID, DATEPAID) VALUES" + data);
@@ -851,7 +883,7 @@ public class DBBean {
             String userString;
             while(rs.next()){
                 
-                userString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6) + " || " + rs.getString(7);
+                userString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6);
                 allInvoices.add(userString);
                 
             }
@@ -878,57 +910,6 @@ public class DBBean {
         }//try
         
     }
-    
-    
-    public ArrayList<String> getUnpaidInvoices(String cID){
-        
-        ArrayList unpaidInvoices = new ArrayList<String>();
-        System.out.println("jere1");
-        try {
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM INVOICES WHERE CID = ? AND IPAID = 'false'");
-            statement.setString(1, cID);
-            rs = statement.executeQuery();
-            String unpaidString;
-            
-            while(rs.next()){
-                System.out.println("jere2");
-                unpaidString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6) + " || " + rs.getString(7);
-                unpaidInvoices.add(unpaidString);
-                
-            }
-            
-        } catch (SQLException e) {
-            System.err.println("Error: " + e);
-        }
-        
-        return unpaidInvoices;
-    }
-    
-    
-    // Function to set consultation costs currently setup on the system
-    public void setInvoicePaid(String IID, String date){
-        
-        try {
-            System.out.println("here66");
-            PreparedStatement statement1 = con.prepareStatement("UPDATE INVOICES SET IPAID = 'true' WHERE IID = ?");
-            
-            statement1.setString(1, IID);
-            
-            statement1.executeUpdate();
-            System.out.println("here77");
-            PreparedStatement statement2 = con.prepareStatement("UPDATE INVOICES SET DATEPAID = ? WHERE IID = ?");
-            
-            statement2.setString(1, date);
-            statement2.setString(2, IID);
-            
-            statement2.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.err.println("Error: " + e);
-        }
-        
-    }
-    
     
     public ArrayList<String> getPaidInvoices(String startDate, String endDate){
         
@@ -958,6 +939,77 @@ public class DBBean {
         }
         
         return paidInvoices;
+        
+    }
+    
+    // Function to set consultation costs currently setup on the system
+    public void setInvoicePaid(String IID, String date){
+        
+        try {
+            System.out.println("here66");
+            PreparedStatement statement1 = con.prepareStatement("UPDATE INVOICES SET IPAID = 'true' WHERE IID = ?");
+            
+            statement1.setString(1, IID);
+            
+            statement1.executeUpdate();
+            System.out.println("here77");
+            PreparedStatement statement2 = con.prepareStatement("UPDATE INVOICES SET DATEPAID = ? WHERE IID = ?");
+            
+            statement2.setString(1, date);
+            statement2.setString(2, IID);
+            
+            statement2.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        
+    }
+    
+    public ArrayList<String> getUnpaidInvoices(String cID){
+        
+        ArrayList unpaidInvoices = new ArrayList<String>();
+        System.out.println("jere1");
+        try {
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM INVOICES WHERE CID = ? AND IPAID = 'false'");
+            statement.setString(1, cID);
+            rs = statement.executeQuery();
+            String unpaidString;
+            
+            while(rs.next()){
+                System.out.println("jere2");
+                unpaidString = rs.getString(1) + " || " + rs.getString(2) + " || " + rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5) + " || " + rs.getString(6) + " || " + rs.getString(7);
+                unpaidInvoices.add(unpaidString);
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        
+        return unpaidInvoices;
+    }
+    
+    // Function to get get all staff for bookings
+    public ArrayList<String> getAllStaff(){
+        
+        ArrayList allStaff = new ArrayList<String>();
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from EMPLOYEE" );
+            
+            while(rs.next()){
+                
+                allStaff.add(rs.getString(5) + " - " + rs.getString(2) + " - " + rs.getString(1));
+                
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        return allStaff;
         
     }
     

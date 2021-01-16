@@ -1,12 +1,10 @@
 <%-- 
     Document   : PayInvoice
-    Created on : 08-Jan-2021, 12:24:09
+    Created on : 12-Jan-2021, 11:55:45
     Author     : callu
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Arrays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

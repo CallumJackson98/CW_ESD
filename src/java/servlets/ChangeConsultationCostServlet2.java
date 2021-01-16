@@ -22,8 +22,17 @@ import model.DBBean;
 @WebServlet(name = "ChangeConsultationCostServlet2", urlPatterns = {"/ChangeConsultationCostServlet2"})
 public class ChangeConsultationCostServlet2 extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request,
-                    HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         
         String doctorPrice = request.getParameter("doctorPrice");
         String nursePrice = request.getParameter("nursePrice");
@@ -50,14 +59,15 @@ public class ChangeConsultationCostServlet2 extends HttpServlet {
         
         if(!operationPrice.equals("")){
                 if(bool) {
-                    db.setConsultationCosts("operation", operationPrice);
+                    db.setConsultationCosts("Operation", operationPrice);
             }
         }
-        RequestDispatcher view = request.getRequestDispatcher(viewer);
         
-        view.forward(request, response);
+        //RequestDispatcher view = request.getRequestDispatcher(viewer);
+        //view.forward(request, response);
         
-        response.sendRedirect("AdminDashboard.jsp");
+        response.sendRedirect("AdminDashboard.jsp");  
+        
     }
 
 }
