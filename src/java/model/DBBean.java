@@ -291,13 +291,11 @@ public class DBBean {
         try{
             
             String data = "('"+uName+"','"+drugName+"')";
-            
             state = con.createStatement();
             state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (uName, drug_Name) VALUES" + data);
             state.close();
             
         }catch(Exception e){
-            
             System.err.println("Error: " + e);
             
         }

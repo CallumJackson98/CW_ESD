@@ -4,6 +4,7 @@
     Author     : callu
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -189,18 +190,34 @@
             <div>
                 <!--    Create table and populate with data from array list    -->
                 <table border ="1" width="500" align="center">
-                    <tr bgcolor="45a5bf"> 
-                        <th><b>Invoice</b></th> 
-                        <th><b>Index</b></th> 
-                    </tr>
+                <tr bgcolor="45a5bf"> 
+                    <th colspan="8"><b>Invoice</b></th>
+                </tr>
+                <tr bgcolor="45a5bf">
+                    <th>IID</th>
+                    <th>EID</th>
+                    <th>CID</th>
+                    <th>Consultation cost</th>
+                    <th>Operation cost</th>
+                    <th>Index</th> 
+                </tr>
                     <%
                         int counter = 1;
-                        for(String s:unpaidInvoices){%> 
-                        <tr> 
-                            <td><%=s%></td> 
-                            <td><%=counter%></td> 
-                        </tr> 
-                    <%counter++;}%> 
+                        ArrayList<String>items = new ArrayList<String>();
+                        for(String s:unpaidInvoices){
+                            s = s.replace("||", "");
+                            items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                            System.out.println(items);
+                            %>
+                            <tr>
+                                <td><%=items.get(0)%></td>
+                                <td><%=items.get(1)%></td>
+                                <td><%=items.get(2)%></td>
+                                <td><%=items.get(3)%></td>
+                                <td><%=items.get(4)%></td>
+                                <td><%=counter%></td>
+                            </tr>
+                            <%counter++;}%>
                 </table>
             </div>
             <div class="flexbox1">
