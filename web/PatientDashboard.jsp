@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Patient Dashboard</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-            
+
             html, body {
                 margin: 0;
                 border: 0;
@@ -55,7 +55,20 @@
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
-                background: #ed3330;
+                background: #6b944a;
+                padding: 20px;
+                border-radius: 5px;
+                display: inline-block;
+                border: none;
+            }
+
+            button {
+                color: #fff !important;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
+                text-decoration: none;
+                background: #6b944a;
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
@@ -78,11 +91,7 @@
                 padding: 30px 10%;
             }
 
-            .buttonStyle1 {
-                background: #6b944a
-            }
-
-            .buttonStyle2 {
+            .buttonBlueStyle {
                 background: #23408e;
             }
         </style>
@@ -92,26 +101,23 @@
         <%
             String userName = (String) session.getAttribute("user");
         %>
+        
         <div class="content">
             <header>
                 <a href="HomePage.html">SmartCare Surgery</a>
-                <!-- Display username -->
                 <a href="PatientDashboard.jsp"><%=userName%></a>
-                <a href="#">Contact</a>
             </header>
         
-        
-        <div class="flexbox1">
-            <form action="LoginServlet" method="post">
-                <input class="buttonStyle1" type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
-                <input class="buttonStyle1" type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">
-                <input class="buttonStyle1" type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">
-                <input class="buttonStyle2" type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">
-                <input class="buttonStyle2" type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
-                <input type="submit" value="Logout" >
-            </form>
-        </div>
-        
-            
+            <div class="flexbox1">
+                <form action="LoginServlet" method="post" id="loginform">
+                    <button type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">Request Prescription</button>
+                    <button type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">Book Appointment</button>
+                    <button type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">View Bookings</button>
+                    <button type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">Pay Invoices</button>
+                    <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
+                    <button class="buttonBlueStyle" type="submit" value="Logout">Logout</button>
+                </form>
+            </div>
+        </div>  
     </body>
 </html>

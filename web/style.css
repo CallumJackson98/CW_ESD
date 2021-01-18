@@ -36,13 +36,30 @@ header {
     height: 100%;
 }
 
+input {
+    font-family: "Montserrat", sans-sarif;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    background: #f8f8ff;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+}
+
+select {
+    height: 40px;
+    font-size: 16px
+}
+
 button {
     color: #fff !important;
     font-family: "Montserrat", sans-sarif;
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
-    background: #ed3330;
+    background: #6b944a;
     padding: 20px;
     border-radius: 5px;
     display: inline-block;
@@ -59,16 +76,46 @@ button:hover {
     transition: all 0.4s ease 0s;
 }
 
+p { 
+    color: #f8f8f8;
+    font-family: "Montserrat", sans-sarif; 
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 32px;
+    padding: 0px 200px;
+}
+
+h1 { /*Title light grey text*/
+    font-family: "Montserrat", sans-sarif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #a3a1a0;
+    text-decoration: underline;
+}
+
+label {
+    font-family: "Montserrat", sans-sarif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #f8f8f8;
+}
+
+input[type=radio] {
+    border: 0px;
+    width: 1.4em;
+    height: 1.4em;
+}
+
 .flexbox1{
     display: flex;
     justify-content: center;
     padding: 30px 10%;
 }
 
-.buttonStyle1 {
-    background: #6b944a
+.buttonBlueStyle {
+    background: #23408e;
 }
 
-.buttonStyle2 {
-    background: #23408e;
+.addressPrint {
+    visibility: hidden;
 }

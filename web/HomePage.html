@@ -54,7 +54,7 @@ and open the template in the editor.
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
-                background: #ed3330;
+                background: #6b944a;
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
@@ -76,37 +76,24 @@ and open the template in the editor.
                 justify-content: center;
                 padding: 30px 10%;
             }
-      
-            .buttonStyle1 {
-                background: #6b944a
-            }
             
-            .buttonStyle2 {
+            .buttonBlueStyle {
                 background: #23408e;
             }
         </style>
     </head>
     <body>
-        <img src="logo.png" alt="Italian Trulli">
         <div class="content">
             <header>
                 <a href="HomePage.html">SmartCare Surgery</a>
-                <nav>
-                    <!-- Navigation Bar -->
-                    <form action="login.html" method="get">
-                        <!-- No navigation required on homepage. -->
-                    </form>
-                </nav>
-                <!-- Link to Contact Page -->
-                <a href="#">Contact</a>
             </header>
             <div class="flexbox1">
                 <form action="login.html" method="get">
-                    <button class="buttonStyle1" name="patientLoginPage" type="submit" value="patient" formaction="PatientLogin.html">Patient Login</button>
-                    <button class="buttonStyle1" name="staffLoginPage" type="submit" value="staff">Staff Login</button>
-                    <button class="buttonStyle1" name="adminLoginPage" type="submit" value="admin" formaction="login.html">Admin Login</button>
-                    <button class="buttonStyle2" name="pSignUpPage" type="submit" formaction="SignUp.jsp">Patient Sign Up</button>
-                    <button class="buttonStyle2" name="sSignUpPage" type="submit" formaction="StaffSignUp.jsp">Staff Sign Up</button>
+                    <button name="patientLoginPage" type="submit" value="patient" formaction="PatientLogin.html">Patient Login</button>
+                    <button name="staffLoginPage" type="submit" value="staff">Staff Login</button>
+                    <button name="adminLoginPage" type="submit" value="admin" formaction="login.html">Admin Login</button>
+                    <button class="buttonBlueStyle" name="pSignUpPage" type="submit" formaction="SignUp.jsp">Patient Sign Up</button>
+                    <button class="buttonBlueStyle" name="sSignUpPage" type="submit" formaction="StaffSignUp.jsp">Staff Sign Up</button>
                 </form>
             </div>
         </div>
