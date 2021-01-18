@@ -185,7 +185,8 @@
                                 <td><%=items.get(4)%></td>
                                 <td><%=counter%></td> 
                             </tr>
-                            <%counter++;}%>
+                            <%counter++;}
+                    %>
                 </table>
             </div>
             <div>
