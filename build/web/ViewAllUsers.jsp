@@ -4,6 +4,7 @@
     Author     : Jake
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -38,17 +39,27 @@
         <!--    Create table of users and populate with data from array list    -->
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
-                <th><b>Users (Username, User type)</b></th> 
-                <th><b>Index</b></th> 
+                <th colspan="3"><b>Users</b></th>
+            </tr>
+            <tr bgcolor="45a5bf">
+                <th>Username</th>
+                <th>User type</th>
+                <th>Index</th> 
             </tr>
             <%
                 int counter = 1;
-                for(String s:allUsers){%> 
-                <tr> 
-                    <td><%=s%></td> 
-                    <td><%=counter%></td> 
-                </tr> 
-            <%counter++;}%> 
+                ArrayList<String>items = new ArrayList<String>();
+                for(String s:allUsers){
+                    s = s.replace("||", "");
+                    
+                    items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                    %>
+                    <tr>
+                        <td><%=items.get(0)%></td> 
+                        <td><%=items.get(1)%></td>
+                        <td><%=counter%></td> 
+                    </tr>
+                    <%counter++;}%>
         </table>
         
         <br>
@@ -77,17 +88,33 @@
         <!--    Create table of Private patients populate with data from array list    -->
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
-                <th><b>Private Patients (Name, Address, Client Type, Username)</b></th> 
-                <th><b>Index</b></th> 
+                <th colspan="5"><b>Private Patients</b></th>
+            </tr>
+            <tr bgcolor="45a5bf">
+                <th>Name</th>
+                <th>Address</th>
+                <th>Client Type</th>
+                <th>Username</th>
+                <th>Index</th> 
             </tr>
             <%
                 int privCounter = 1;
-                for(String s:allPrivate){%> 
-                <tr> 
-                    <td><%=s%></td> 
-                    <td><%=privCounter%></td> 
-                </tr> 
-            <%privCounter++;}%> 
+                ArrayList<String>privItems = new ArrayList<String>();
+                for(String p:allPrivate){
+
+                    p = p.replace("||", "");
+                    
+                    privItems = new ArrayList<String>(Arrays.asList(p.split("  ")));
+                    System.out.println(privItems);
+                    %>
+                    <tr>
+                        <td><%=privItems.get(0)%></td> 
+                        <td><%=privItems.get(1)%></td>
+                        <td><%=privItems.get(2)%></td>
+                        <td><%=privItems.get(3)%></td>
+                        <td><%=privCounter%></td> 
+                    </tr>
+                    <%privCounter++;}%>
         </table>
         
     </body>

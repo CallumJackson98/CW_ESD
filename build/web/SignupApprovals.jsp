@@ -33,17 +33,31 @@
         <!--    Create table and populate with data from array list    -->
         <table border ="1" width="500" align="center">
             <tr bgcolor="45a5bf"> 
-                <th><b>Staff Member</b></th> 
-                <th><b>Index</b></th> 
+                <th colspan="5"><b>Staff Member</b></th>
+            </tr>
+            <tr bgcolor="45a5bf">
+                <th>Name</th>
+                <th>Address</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Index</th> 
             </tr>
             <%
                 int counter = 1;
-                for(String s:appUsers){%> 
-                <tr> 
-                    <td><%=s%></td> 
-                    <td><%=counter%></td> 
-                </tr> 
-            <%counter++;}%> 
+                ArrayList<String>items = new ArrayList<String>();
+                for(String s:appUsers){
+                    s = s.replace(";", "");
+                    items = new ArrayList<String>(Arrays.asList(s.split(" ")));
+                    %>
+                    <tr>
+                        <td><%=items.get(0) + " " + items.get(1)%></td>
+                        <td><%=items.get(2)%></td>
+                        <td><%=items.get(3)%></td>
+                        <td><%=items.get(4)%></td>
+                        <td><%=counter%></td> 
+
+                    </tr>
+                    <%counter++;}%>
         </table>
         
         <!--    Create dynamic table that has correct amount of checkboxes    -->

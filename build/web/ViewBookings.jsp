@@ -162,8 +162,15 @@
                 <!--    Create table of users and populate with data from array list    -->
                 <table border ="1" width="500" align="center">
                     <tr bgcolor="45a5bf"> 
-                        <th><b>Appointments (App ID, sID, cID, Date, Time)</b></th> 
-                        <th><b>Index</b></th> 
+                        <th colspan="6"><b>Appointments</b></th>
+                    </tr>
+                    <tr bgcolor="45a5bf">
+                        <th>App ID</th>
+                        <th>sID</th>
+                        <th>cID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Index</th> 
                     </tr>
                     <%
                         int counter = 1;
@@ -180,8 +187,7 @@
                                 <td><%=items.get(4)%></td>
                                 <td><%=counter%></td> 
                             </tr>
-                            <%counter++;}
-                    %>
+                            <%counter++;}%>
                 </table>
             </div>
             <div>
