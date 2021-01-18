@@ -64,7 +64,9 @@
 
             select {
                 height: 40px;
-                font-size: 16px
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
             }
 
             button {
@@ -178,12 +180,10 @@
                 </p>
             </div>
             <div class="flexbox1">
-                <form action="RequestPrescriptionServlet" method="post">
-                    <!--    Display form for user deletion    -->
-                    <form action="DeleteAppointmentServlet" method="post">
-                        <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
-                        <button type="submit" value="Delete">Delete</button>
-                    </form>
+                <!--    Display form for user deletion    -->
+                <form action="DeleteAppointmentServlet" method="post">
+                    <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
+                    <button type="submit" value="Delete">Delete</button>
                 </form>
             </div>
         </div>
