@@ -60,7 +60,6 @@
                 display: inline-block;
                 border: none;
             }
-<<<<<<< HEAD
 
             button {
                 color: #fff !important;
@@ -74,16 +73,6 @@
                 display: inline-block;
                 border: none;
                 transition: all 0.4s ease 0s;
-=======
-            
-            .info {
-                max-width: 900px;
-                margin: auto;
-                background-color: #2d3144;
-                font-family: "Montserrat", sans-sarif;
-                font-weight: 500;
-                font-size: 10px;
->>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             }
 
             button:hover {
@@ -134,15 +123,10 @@
             .buttonBlueStyle {
                 background: #23408e;
             }
-<<<<<<< HEAD
 
             .addressPrint {
                 visibility: hidden;
             }
-=======
-            
-            input, select, select option{background-color:#363636 !important}
->>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
         </style>
     </head>
     <body>
@@ -152,7 +136,6 @@
         
         <div class="content">
             <header>
-<<<<<<< HEAD
                 <a href="HomePage.html">SmartCare Surgery</a>
                 <h1>Request Prescription</h1>
                 <a href="PatientDashboard.jsp"><%=userName%></a>
@@ -165,16 +148,6 @@
                     <br><br>
                     To return to your dashboard simply click your username at the top of the screen.
                 </p>
-=======
-                <a href="PatientDashboard.jsp">Back to dashboard</a>
-                <a href="#">Request Prescription</a>
-                <a href="#"><%=userName%></a>
-            </header>
-            <div class="info">
-                <a href="info">Please fill in the form below to request a prescription. A doctor or 
-                    nurse will review it. All requested and active prescriptions can be 
-                    seen from the view prescriptions page.</a>
->>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             </div>
             <div class="flexbox1">
                 <form action="RequestPrescriptionServlet" method="post">

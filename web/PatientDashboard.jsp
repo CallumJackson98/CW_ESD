@@ -108,7 +108,6 @@
                 <a href="PatientDashboard.jsp"><%=userName%></a>
             </header>
         
-<<<<<<< HEAD
             <div class="flexbox1">
                 <form action="LoginServlet" method="post" id="loginform">
                     <button type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">Request Prescription</button>
@@ -120,20 +119,5 @@
                 </form>
             </div>
         </div>  
-=======
-        
-            <div class="flexbox1">
-                <form action="LoginServlet" method="post">
-                    <input class="buttonStyle1" type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
-                    <input class="buttonStyle1" type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">
-                    <input class="buttonStyle1" type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">
-                    <input class="buttonStyle1" type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">
-                    <input class="buttonStyle2" type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
-                    <input type="submit" value="Logout" >
-                </form>
-            </div>
-        </div>
-            
->>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
     </body>
 </html>

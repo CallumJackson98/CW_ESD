@@ -245,6 +245,10 @@ public class DBBean {
             PreparedStatement st1 = con.prepareStatement("DELETE FROM EMPLOYEE WHERE UNAME = ?");
             st1.setString(1, uName);
             st1.executeUpdate();
+            
+            PreparedStatement st2 = con.prepareStatement("DELETE FROM PRESCRIPTIONS WHERE UNAME = ?");
+            st2.setString(1, uName);
+            st2.executeUpdate();
                
             // Delete from users
             PreparedStatement st3 = con.prepareStatement("DELETE FROM USERS WHERE UNAME = ?");
@@ -1013,5 +1017,38 @@ public class DBBean {
         
     }
     
+     // Function to return all prices
+    public String getPrices(){
+        
+        String opCost = "";
+        String docCost = "";
+        String nurseCost = "";
+        String prices = "";
+        
+        try {
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from CONSULTATION_PRICES");
+            String userString;
+            while(rs.next()){
+                
+                if(rs.getString(1).equals("doctor")){
+                    docCost = rs.getString(2);
+                }else if(rs.getString(1).equals("nurse")){
+                    nurseCost = rs.getString(2);
+                }else{
+                    opCost = rs.getString(2);
+                }
+                
+            }
+                  
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }//try
+        
+        prices = "Doctor: £" + docCost + " Nurse: £" + nurseCost + " Operation: £" + opCost;
+        
+        return prices;
+        
+    }
     
 }
