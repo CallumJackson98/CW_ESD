@@ -167,6 +167,7 @@
             <div>
                 <p>
                     Here you can view all of your bookings and complete the appointment form.
+                    Note: A slot consists of 15 minutes surgery time.
                     <br><br>
                     To return to your dashboard simply click your username at the top of the screen.
                 </p>
@@ -196,18 +197,23 @@
                 </table>
             </div>
 
-            <div class="flexbox1"></div>
             <!--    Form to forward to hospital and for prescription    -->
-            <form action="ConsultationServlet" method="post">
-                Appointment ID: <input type="text" name="appID" required>
-                <br>
+            <div class="flexbox1">
+                <form action="ConsultationServlet" method="post" id="consultform">
+                    <input type="text" name="appID" required placeholder="Appointment ID">
+                </form>
+            </div>
+            <div class="flexbox1">
                 <label>Requires surgery?</label>
-                Yes <input type="radio" id="surYes" name="surgery" value="surYes" onclick="surCheck();">
-                No <input type="radio" id="surNo" name="surgery" value="surNo" checked onclick="surCheck();">
-                <br>
+                <input type="radio" id="surYes" name="surgery" value="surYes" onclick="surCheck();" form="consultform">
+                <label for="surYes">Yes</label><br>
+                <input type="radio" id="surNo" name="surgery" value="surNo" checked onclick="surCheck();" form="consultform">
+                <label for="surNo">No</label><br>
+            </div>
+            <div class="flexbox1" id="surgeryDisplay">
                 <label id="surLab" style="display: none;">Date: </label>
-                <input type="hidden" id="datepicker" name="date">
-                <select name="hour" id="hourPick" style="display: none;">
+                <input type="hidden" id="datepicker" name="date" form="consultform" placeholder="Date">
+                <select name="hour" id="hourPick" style="display: none;" form="consultform">
                     <option>09</option>
                     <option>10</option>
                     <option>11</option>
@@ -218,39 +224,31 @@
                     <option>16</option>
                     <option>17</option>
                 </select>
-                <select name="mins" id="minPick" style="display: none;">
+                <select name="mins" id="minPick" style="display: none;" form="consultform">
                     <option>00</option>
                     <option>15</option>
                     <option>30</option>
                     <option>45</option>
                 </select>
-                <br>
+            </div>
+            <div class="flexbox1">
                 <label id="slotLab" style="display: none;">Number of slots (15 mins each): </label>
-                <input type="hidden" name="slotNum" required id="slotPick">
-                <br>
-                Prescription (leave blank if none): <input type="text" name="prescription">
-                <br>
-                <input type="submit" value="Process" >
-            </form>
-
+                <input type="hidden" name="slotNum" required id="slotPick" form="consultform" placeholder="Number of Slots">
+            </div>
+            <div class="flexbox1">
+                <input type="text" name="prescription" placeholder="Prescription" form="consultform">
+                <button type="submit" value="Process" form="consultform">Process</button>
+            </div> 
             <script type=text/javascript>
                 function surCheck(){
                     if(document.getElementById("surYes").checked){
-                        //document.getElementById("datepicker").style.visibility = 'visible';
-                        //document.getElementById("surLab").style.visibility = 'visible';
                         document.getElementById("datepicker").type = 'text';
                         document.getElementById("slotPick").type = 'text';
-                        document.getElementById("surLab").style.display = 'inline';
-                        document.getElementById("slotLab").style.display = 'inline';
                         document.getElementById("hourPick").style.display = 'inline';
                         document.getElementById("minPick").style.display = 'inline';
                     }else{
-                        //document.getElementById("datepicker").style.visibility = 'hidden';
-                        //document.getElementById("surLab").style.visibility = 'hidden';
                         document.getElementById("datepicker").type = 'hidden';
                         document.getElementById("slotPick").type = 'hidden';
-                        document.getElementById("surLab").style.display = 'none';
-                        document.getElementById("slotLab").style.display = 'none';
                         document.getElementById("hourPick").style.display = 'none';
                         document.getElementById("minPick").style.display = 'none';
                     }
