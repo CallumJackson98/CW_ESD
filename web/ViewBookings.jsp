@@ -161,15 +161,14 @@
                 <table border ="1" width="500" align="center">
                     <tr bgcolor="45a5bf"> 
                         <th colspan="7"><b>Appointments</b></th>
-                        
                     </tr>
-                    <tr>
-                        <td>App ID</td>
-                        <td>sID</td>
-                        <td>cID</td>
-                        <td>Date</td>
-                        <td>Time</td>
-                        <td>Index</td>
+                    <tr bgcolor="45a5bf">
+                        <th>App ID</th>
+                        <th>sID</th>
+                        <th>cID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Index</th>
                     </tr>
                     <%
                         int counter = 1;
@@ -177,20 +176,16 @@
                         for(String s:allAppointments){
                             s = s.replace("||", "");
                             items = new ArrayList<String>(Arrays.asList(s.split("  ")));
-                            System.out.println(s);
-                            System.out.println(items);
-                            String id = items.get(0);
-                            System.out.println(id);
                             %>
                             <tr>
-                                <td><%items.get(0);%></td>
-                                <td><%items.get(1);%></td>
-                                <td><%items.get(2);%></td>
-                                <td><%items.get(3);%></td>
-                                <td><%items.get(4);%></td>
-                                <td><%counter++;%></td>
+                                <td><%=items.get(0)%></td> 
+                                <td><%=items.get(1)%></td>
+                                <td><%=items.get(2)%></td>
+                                <td><%=items.get(3)%></td>
+                                <td><%=items.get(4)%></td>
+                                <td><%=counter%></td> 
                             </tr>
-                            <%}%>
+                            <%counter++;}%>
                 </table>
             </div>
             <div>
