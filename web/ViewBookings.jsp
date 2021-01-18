@@ -65,7 +65,9 @@
 
             select {
                 height: 40px;
-                font-size: 16px
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
             }
 
             button {
@@ -160,15 +162,8 @@
                 <!--    Create table of users and populate with data from array list    -->
                 <table border ="1" width="500" align="center">
                     <tr bgcolor="45a5bf"> 
-                        <th colspan="7"><b>Appointments</b></th>
-                    </tr>
-                    <tr bgcolor="45a5bf">
-                        <th>App ID</th>
-                        <th>sID</th>
-                        <th>cID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Index</th>
+                        <th><b>Appointments (App ID, sID, cID, Date, Time)</b></th> 
+                        <th><b>Index</b></th> 
                     </tr>
                     <%
                         int counter = 1;
@@ -195,12 +190,10 @@
                 </p>
             </div>
             <div class="flexbox1">
-                <form action="RequestPrescriptionServlet" method="post">
-                    <!--    Display form for user deletion    -->
-                    <form action="DeleteAppointmentServlet" method="post">
-                        <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
-                        <button type="submit" value="Delete">Delete</button>
-                    </form>
+                <!--    Display form for user deletion    -->
+                <form action="DeleteAppointmentServlet" method="post">
+                    <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
+                    <button type="submit" value="Delete">Delete</button>
                 </form>
             </div>
         </div>

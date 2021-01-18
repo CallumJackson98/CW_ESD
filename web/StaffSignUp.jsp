@@ -124,7 +124,7 @@
                 background: #23408e;
             }
             
-            .addressPrint {
+            .makeHidden {
                 visibility: hidden;
             }
         </style>    
@@ -145,45 +145,35 @@
                 </p>
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
+                <form action="SignUpServlet" method="post" id="signupform">
                     <input type="text" name="fName" required placeholder="First Name">
                     <input type="text" name="sName" required placeholder="Last Name">
                 </form>
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
-                    <input type="password" name="pwd" required placeholder="Password">
-                </form>
+                <input type="password" name="pwd" required placeholder="Password" form="signupform">
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
-                    <input type= "address" name="address" id="address" size="50" required placeholder="Address">
-                    <button class= "buttonStyleBlue" type="button" onclick="userAction()">Lookup</button>
-                </form>
+                <input type= "address" name="address" id="address" size="50" required placeholder="Address" form="signupform">
+                <button class= "buttonStyleBlue" type="button" onclick="userAction()" form="signupform">Lookup</button>
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
-                    <input type="radio" id="doctor" name="staffRole" value="Doctor" checked>
-                    <label for="doctor">Doctor</label><br>
-                    <input type="radio" id="nurse" name="staffRole" value="Nurse">
-                    <label for="nurse">Nurse</label><br>
-                </form>
+                <input type="radio" id="doctor" name="staffRole" value="Doctor" checked form="signupform">
+                <label for="doctor">Doctor</label><br>
+                <input type="radio" id="nurse" name="staffRole" value="Nurse" form="signupform">
+                <label for="nurse">Nurse</label><br>
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
-                    <input type="radio" id="ft" name="shift" value="FT" checked>
-                    <label for="ft">Full Time</label><br>
-                    <input type="radio" id="pt" name="shift" value="PT">
-                    <label for="pt">Part Time</label><br>
-                </form>
+                <input type="radio" id="ft" name="shift" value="FT" checked form="signupform">
+                <label for="ft">Full Time</label><br>
+                <input type="radio" id="pt" name="shift" value="PT" form="signupform">
+                <label for="pt">Part Time</label><br>
             </div>
             <div class="flexbox1">
-                <form action="SignUpServlet" method="post">
-                    <button class="buttonBlueStyle" type="submit" value="StaffSignUp">Signup</button>
-                </form>
+                <button class="buttonBlueStyle" type="submit" value="StaffSignUp" form="signupform">Signup</button>
             </div>
             
-            <div class="addressPrint">
+            <div class="makeHidden">
                 <p id="json_out"></p>
             </div>
             
