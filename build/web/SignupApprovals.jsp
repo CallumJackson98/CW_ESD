@@ -238,7 +238,7 @@
                     <%}%>
 
                     <input type="radio" id="accept" name="arButton" value="Accept" checked>
-                    <label for="acccept">Accept</label>
+                    <label for="accept">Accept</label>
                     <input type="radio" id="reject" name="arButton" value="Reject">
                     <label for="reject">Reject</label>
 
@@ -270,7 +270,7 @@
                         // Create string list of elements
                         <%
                             String[] splitChecked = appUsers.get(j).split("; ");
-
+                            System.out.println(splitChecked);
                         %>
 
                         // Check if checked

@@ -239,6 +239,7 @@ public class DBBean {
             
             // Delete from clients or employees first (holds foreign key)
             PreparedStatement st = con.prepareStatement("DELETE FROM CLIENTS WHERE UNAME = ?");
+            System.out.println(uName);
             st.setString(1, uName);
             st.executeUpdate();
             

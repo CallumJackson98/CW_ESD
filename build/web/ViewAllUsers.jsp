@@ -22,7 +22,7 @@
 
             body {
                 background-color: #F5F5F5;
-                height: 100vh;
+                height: 150vh;
             }
 
             * {
@@ -244,10 +244,10 @@
                     <th colspan="5"><b>NHS Patients</b></th>
                 </tr>
                 <tr bgcolor="45a5bf">
-                    <th>Name</th>
+                    <th>Username</th>
                     <th>Address</th>
                     <th>Client Type</th>
-                    <th>Username</th>
+                    <th>Name</th>
                     <th>Index</th> 
                 </tr>
                 <%
@@ -261,10 +261,10 @@
                         System.out.println(nhsItems);
                         %>
                         <tr>
-                            <td><%=nhsItems.get(0)%></td> 
+                            <td><%=nhsItems.get(3)%></td>
                             <td><%=nhsItems.get(1)%></td>
                             <td><%=nhsItems.get(2)%></td>
-                            <td><%=nhsItems.get(3)%></td>
+                            <td><%=nhsItems.get(0)%></td> 
                             <td><%=nhsCounter%></td> 
                         </tr>
                         <%nhsCounter++;}%>
@@ -278,10 +278,10 @@
                     <th colspan="5"><b>Private Patients</b></th>
                 </tr>
                 <tr bgcolor="45a5bf">
-                    <th>Name</th>
+                    <th>Username</th>
                     <th>Address</th>
                     <th>Client Type</th>
-                    <th>Username</th>
+                    <th>Name</th>
                     <th>Index</th> 
                 </tr>
                 <%
@@ -295,10 +295,10 @@
                         System.out.println(privItems);
                         %>
                         <tr>
-                            <td><%=privItems.get(0)%></td> 
+                            <td><%=privItems.get(3)%></td>
                             <td><%=privItems.get(1)%></td>
                             <td><%=privItems.get(2)%></td>
-                            <td><%=privItems.get(3)%></td>
+                            <td><%=privItems.get(0)%></td> 
                             <td><%=privCounter%></td> 
                         </tr>
                         <%privCounter++;}%>
