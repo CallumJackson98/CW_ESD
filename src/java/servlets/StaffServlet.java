@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +40,7 @@ public class StaffServlet extends HttpServlet {
         
         // Get button from form
         String sr = request.getParameter("apButton");
+        String uName = request.getParameter("uName_hidden");
         String viewer;
         
         // Get connection to database
@@ -46,7 +48,25 @@ public class StaffServlet extends HttpServlet {
         boolean bool = db.getConnection();
         
         // Set viewer
-        viewer = "PrescriptionApprovals.jsp";
+        if(sr != null){
+            viewer = "PrescriptionApprovals.jsp";
+        }else{
+            
+            String sID = "";
+            sID = db.getUserID(uName, "EMPLOYEE");
+            
+            // Get date to search appointments for
+            LocalDate localDate = LocalDate.now();//For reference
+            String date = localDate.toString();
+            
+            // Array list of all bookings for this user
+            ArrayList<String> allAppointments = db.getAllAppointmentsToday(sID, date);
+            
+            request.setAttribute("allApps", allAppointments);
+            
+            viewer = "StaffViewBookings.jsp";
+        }
+        
 
         // Create String array list to store all users awaiting approval
         if(bool){

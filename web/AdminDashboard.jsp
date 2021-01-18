@@ -16,6 +16,9 @@
         <form action="LogoutServlet" method="post">
             <input type="submit" name = "srButton" value="View Signup Requests" formaction="ApprovalServlet">
             <input type="submit" name = "vaButton" value="View all users (and delete)" formaction="ApprovalServlet">
+            <input type="submit" name = "viButton" value="View all invoices (and turnover)" formaction="ApprovalServlet">
+            <input type="submit" name = "cccButton" value="Change Consultation Cost" formaction="ApprovalServlet">
+            <input type="submit" name = "ctButton" value="Calculate Turnover" formaction="ApprovalServlet">
             <input type="submit" value="Logout" >
         </form>
     </body>

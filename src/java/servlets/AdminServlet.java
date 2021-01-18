@@ -18,7 +18,7 @@ import model.DBBean;
 
 /**
  *
- * @author Jake
+ * @author Jake and callu
  */
 //@WebServlet(name = "AdminServlet", urlPatterns = {"/ApprovalServlet"})
 @WebServlet("/ApprovalServlet")
@@ -28,8 +28,13 @@ public class AdminServlet extends HttpServlet {
                     HttpServletResponse response) throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        String viewer;
+        String viewer= "";
         String sr = request.getParameter("srButton");
+        String va = request.getParameter("vaButton");
+        String vi = request.getParameter("viButton");
+        String ccc = request.getParameter("cccButton");
+        
+        System.out.println(sr + " " + va + " " + vi);
         
         // Get connection to database
         DBBean db = new DBBean();
@@ -38,19 +43,23 @@ public class AdminServlet extends HttpServlet {
         // If not null, do actions for signup reviews
         if(sr != null){
             
+            System.out.println("here");
+            
             // Set viewer
             viewer = "SignupApprovals.jsp";
             
             // Create String array list to store all users awaiting approval
             if(bool){
             
+                System.out.println("in bool here");
                 ArrayList<String> approvalUsers = db.getApprovalUsers();
                 request.setAttribute("appUsers", approvalUsers);
             
             }
            
-        }else{
-            // Else, action is view all records
+        }else if(va != null){
+            
+            System.out.println("here1");
             
             // Set viewer
             viewer = "ViewAllUsers.jsp";
@@ -72,12 +81,41 @@ public class AdminServlet extends HttpServlet {
                 
             }
             
-        }
+        }else if(vi != null){
         
+            System.out.println("here2");
+            
+            // Set viewer
+            viewer = "ViewInvoices.jsp";
+            
+            // Forward list of invoices
+            if(bool){
+                
+                // Array list of all invoices
+                ArrayList<String> allInvoices = db.getAllInvoices();
+                request.setAttribute("allInvoices", allInvoices);
+            
+            }
+        
+        }else if(ccc != null){
+            
+            String prices = db.getPrices();
+            ArrayList pricesList = new ArrayList<String>();
+            pricesList.add(prices);
+            request.setAttribute("prices", pricesList);
+            //Set viewer
+            viewer = "ChangeConsultationCost.jsp";
+            
+        }else{
+            //Set viewer
+            viewer = "CalculateTurnover.jsp";
+            
+        }
         
         RequestDispatcher view = request.getRequestDispatcher(viewer);
         view.forward(request, response);
                 
+        
     }
 
 }
