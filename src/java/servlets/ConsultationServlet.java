@@ -75,12 +75,19 @@ public class ConsultationServlet extends HttpServlet {
             slotNum = "0";
         }
         
+        try{
+            int slotNumInt = Integer.parseInt(slotNum);
+        }catch(Exception e){
+            System.out.println("String as slot num.");
+            failed = true;
+        }
+        
         // Connection to DB
         // Create db instance
         DBBean db = new DBBean();
         boolean bool = db.getConnection();
         
-        if(bool){
+        if(bool && !failed){
             
             System.out.println("get ID from booking");
             // Get client ID from booking

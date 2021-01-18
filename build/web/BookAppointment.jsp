@@ -20,7 +20,7 @@
         $( function() {
           $( "#datepicker" ).datepicker({
               dateFormat: "dd-mm-yy",
-              minDate: 1,
+              minDate: 0,
               maxDate: "+2w",
               onSelect: function() {
                 var date = $(this).datepicker('getDate');

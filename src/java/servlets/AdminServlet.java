@@ -99,6 +99,10 @@ public class AdminServlet extends HttpServlet {
         
         }else if(ccc != null){
             
+            String prices = db.getPrices();
+            ArrayList pricesList = new ArrayList<String>();
+            pricesList.add(prices);
+            request.setAttribute("prices", pricesList);
             //Set viewer
             viewer = "ChangeConsultationCost.jsp";
             
