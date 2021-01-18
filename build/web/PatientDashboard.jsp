@@ -101,17 +101,17 @@
             </header>
         
         
-        <div class="flexbox1">
-            <form action="LoginServlet" method="post">
-                <input class="buttonStyle1" type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
-                <input class="buttonStyle1" type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">
-                <input class="buttonStyle1" type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">
-                <input class="buttonStyle2" type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">
-                <input class="buttonStyle2" type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
-                <input type="submit" value="Logout" >
-            </form>
+            <div class="flexbox1">
+                <form action="LoginServlet" method="post">
+                    <input class="buttonStyle1" type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">
+                    <input class="buttonStyle1" type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">
+                    <input class="buttonStyle1" type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">
+                    <input class="buttonStyle1" type="submit" name = "piButton" value="Pay invoice" formaction="PatientServlet">
+                    <input class="buttonStyle2" type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
+                    <input type="submit" value="Logout" >
+                </form>
+            </div>
         </div>
-        
             
     </body>
 </html>

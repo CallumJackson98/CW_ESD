@@ -67,10 +67,9 @@
                 max-width: 900px;
                 margin: auto;
                 background-color: #2d3144;
-                height: 100%;
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
-                font-size: 16px;
+                font-size: 10px;
             }
             
             button:hover {
@@ -95,6 +94,8 @@
             .buttonStyle2 {
                 background: #23408e;
             }
+            
+            input, select, select option{background-color:#363636 !important}
         </style>
     </head>
     <body>
@@ -105,16 +106,14 @@
         <div class="content">
             <header>
                 <a href="PatientDashboard.jsp">Back to dashboard</a>
-                <!-- Link to Contact Page -->
-                <a href="#">Contact</a>
                 <a href="#">Request Prescription</a>
                 <a href="#"><%=userName%></a>
-                <div class="info">
-                    <a href="#">Please fill in the form below to request a prescription. A doctor or 
-                        nurse will review it. All requested and active prescriptions can be 
-                        seen from the view prescriptions page.</a>
-                </div>
             </header>
+            <div class="info">
+                <a href="info">Please fill in the form below to request a prescription. A doctor or 
+                    nurse will review it. All requested and active prescriptions can be 
+                    seen from the view prescriptions page.</a>
+            </div>
             <div class="flexbox1">
                 <form action="RequestPrescriptionServlet" method="post">
                     Name of drug: <input type="text" name="drugName" required>
