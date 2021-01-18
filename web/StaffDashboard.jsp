@@ -13,7 +13,11 @@
         <title>Staff Dashboard</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             html, body {
                 margin: 0;
                 border: 0;
@@ -56,6 +60,7 @@
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
+<<<<<<< HEAD
                 background: #6b944a;
                 padding: 20px;
                 border-radius: 5px;
@@ -70,6 +75,9 @@
                 font-size: 16px;
                 text-decoration: none;
                 background: #6b944a;
+=======
+                background: #ed3330;
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
@@ -92,7 +100,15 @@
                 padding: 30px 10%;
             }
 
+<<<<<<< HEAD
             .buttonBlueStyle {
+=======
+            .buttonStyle1 {
+                background: #6b944a
+            }
+
+            .buttonStyle2 {
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 background: #23408e;
             }
         </style>
@@ -103,18 +119,37 @@
             String userName = (String) session.getAttribute("user");
         %>
         
+<<<<<<< HEAD
         <div class="content">
             <header>
                 <a href="HomePage.html">SmartCare Surgery</a>
                 <a href="StaffDashboard.jsp"><%=userName%></a>
+=======
+        
+        
+            
+        <div class="content">
+            <header>
+                <a href="HomePage.html">SmartCare Surgery</a>
+                <!-- Display username -->
+                <a href="StaffDashboard.jsp"><%=userName%></a>
+                <a href="#">Contact</a>
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             </header>
                 
             <div class="flexbox1">
                 <form action="LogoutServlet" method="post">
+<<<<<<< HEAD
                     <button type="submit" name = "vbButton" value="View bookings" formaction="StaffServlet">View Bookings</button>
                     <button type="submit" name = "apButton" value="View requested prescriptions" formaction="StaffServlet">View Requested Prescriptions</button>
                     <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
                     <button class="buttonBlueStyle" type="submit" value="Logout">Logout</button>
+=======
+                    <input class="buttonStyle1" type="submit" name = "vbButton" value="View bookings" formaction="StaffServlet">
+                    <input class="buttonStyle1" type="submit" name = "apButton" value="View requested prescriptions" formaction="StaffServlet">
+                    <input class="buttonStyle2" type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
+                    <input type="submit" value="Logout" >
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                     
                 </form>
             </div>

@@ -51,24 +51,42 @@
             }
 
             input {
+<<<<<<< HEAD
+=======
+                color: #fff !important;
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
+<<<<<<< HEAD
                 background: #f8f8ff;
+=======
+                background: #ed3330;
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
                 border: none;
+<<<<<<< HEAD
             }
 
             button {
+=======
+                transition: all 0.4s ease 0s;
+            }
+            
+            select {
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 color: #fff !important;
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
+<<<<<<< HEAD
                 background: #6b944a;
+=======
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
@@ -76,6 +94,18 @@
                 transition: all 0.4s ease 0s;
             }
 
+<<<<<<< HEAD
+=======
+            .info {
+                max-width: 900px;
+                margin: auto;
+                background-color: #2d3144;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 10px;
+            }
+
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             button:hover {
                 background: #434343;
                 letter-spacing: 1px;
@@ -85,6 +115,7 @@
                 transition: all 0.4s ease 0s;
             }
 
+<<<<<<< HEAD
             p { 
                 color: #f8f8f8;
                 font-family: "Montserrat", sans-sarif; 
@@ -120,12 +151,15 @@
                 font-size: 16px
             }
 
+=======
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             .flexbox1{
                 display: flex;
                 justify-content: center;
                 padding: 30px 10%;
             }
 
+<<<<<<< HEAD
             .buttonBlueStyle {
                 background: #23408e;
             }
@@ -133,6 +167,19 @@
             .addressPrint {
                 visibility: hidden;
             }
+=======
+            .buttonStyle1 {
+                background: #6b944a
+            }
+
+            .buttonStyle2 {
+                background: #23408e;
+            }
+            
+            input, select, select option{background-color:#363636 !important}
+            
+            
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
         </style>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -162,6 +209,7 @@
            
         <div class="content">
             <header>
+<<<<<<< HEAD
                 <a href="HomePage.html">SmartCare Surgery</a>
                 <h1>Book Appointment</h1>
                 <a href="PatientDashboard.jsp"><%=userName%></a>
@@ -169,6 +217,15 @@
             <div>
                 <p>
                     From this page you can book an appointment. Please select a date and a time. 
+=======
+                <a href="PatientDashboard.jsp">Back to dashboard</a>
+                <a href="#">Book Appointments</a>
+                <a href="#"><%=userName%></a>
+                
+            </header>
+            <div class="info">
+                <a href="info">From this page you can book an appointment. Please select a date and a time. 
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
                     Doctor's appointments can be made from Monday to Friday. The Nurse is only
                     in from Tuesday to Thursday. If no slots are available, no appointment will be made.
                     <br><br>
@@ -207,6 +264,43 @@
                 </form>
                     
             </div>
+<<<<<<< HEAD
+=======
+            <div class="flexbox1">
+                <form action="BookAppointmentServlet" method="post">
+                    Date: <input type="text" id="datepicker" name="date" required>
+                    <br>
+                    <select name="hour">
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                    </select>
+                    <select name="mins">
+                        <option>00</option>
+                        <option>15</option>
+                        <option>30</option>
+                        <option>45</option>
+                    </select>
+                    <select name="staff" id="staffSelect">
+                        <%
+                        for(String s:allUsers){%> 
+                        <option><%=s%></option>
+                        <%}%>
+                    </select>
+                    <br>
+                    <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
+                    <input type="hidden" id="day_hidden" name="day_hidden"  value="">
+                    <input type="submit" value="BookAppointment">
+                </form>
+                    
+            </div>
+>>>>>>> cd88e91c7e23857082eca7e74a710f05a1373949
             
         </div>
         
