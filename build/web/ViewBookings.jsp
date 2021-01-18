@@ -4,6 +4,7 @@
     Author     : Jake
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -166,12 +167,21 @@
                     </tr>
                     <%
                         int counter = 1;
-                        for(String s:allAppointments){%> 
-                        <tr> 
-                            <td><%=s%></td> 
-                            <td><%=counter%></td> 
-                        </tr> 
-                    <%counter++;}%> 
+                        ArrayList<String>items = new ArrayList<String>();
+                        for(String s:allAppointments){
+                            s = s.replace("||", "");
+                            items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                            %>
+                            <tr>
+                                <td><%=items.get(0)%></td> 
+                                <td><%=items.get(1)%></td>
+                                <td><%=items.get(2)%></td>
+                                <td><%=items.get(3)%></td>
+                                <td><%=items.get(4)%></td>
+                                <td><%=counter%></td> 
+                            </tr>
+                            <%counter++;}
+                    %>
                 </table>
             </div>
             <div>
