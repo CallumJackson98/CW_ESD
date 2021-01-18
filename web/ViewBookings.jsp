@@ -4,6 +4,7 @@
     Author     : Jake
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -159,17 +160,37 @@
                 <!--    Create table of users and populate with data from array list    -->
                 <table border ="1" width="500" align="center">
                     <tr bgcolor="45a5bf"> 
-                        <th><b>Appointments (App ID, sID, cID, Date, Time)</b></th> 
-                        <th><b>Index</b></th> 
+                        <th colspan="7"><b>Appointments</b></th>
+                        
+                    </tr>
+                    <tr>
+                        <td>App ID</td>
+                        <td>sID</td>
+                        <td>cID</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Index</td>
                     </tr>
                     <%
                         int counter = 1;
-                        for(String s:allAppointments){%> 
-                        <tr> 
-                            <td><%=s%></td> 
-                            <td><%=counter%></td> 
-                        </tr> 
-                    <%counter++;}%> 
+                        ArrayList<String>items = new ArrayList<String>();
+                        for(String s:allAppointments){
+                            s = s.replace("||", "");
+                            items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                            System.out.println(s);
+                            System.out.println(items);
+                            String id = items.get(0);
+                            System.out.println(id);
+                            %>
+                            <tr>
+                                <td><%items.get(0);%></td>
+                                <td><%items.get(1);%></td>
+                                <td><%items.get(2);%></td>
+                                <td><%items.get(3);%></td>
+                                <td><%items.get(4);%></td>
+                                <td><%counter++;%></td>
+                            </tr>
+                            <%}%>
                 </table>
             </div>
             <div>
