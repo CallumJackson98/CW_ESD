@@ -76,7 +76,6 @@ public class SignUpServlet extends HttpServlet {
                 db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
 
             }
-
             // Redirect to home page
             response.sendRedirect("HomePage.html");
         

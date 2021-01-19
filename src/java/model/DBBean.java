@@ -239,6 +239,7 @@ public class DBBean {
             
             // Delete from clients or employees first (holds foreign key)
             PreparedStatement st = con.prepareStatement("DELETE FROM CLIENTS WHERE UNAME = ?");
+            System.out.println(uName);
             st.setString(1, uName);
             st.executeUpdate();
             
@@ -291,13 +292,11 @@ public class DBBean {
         try{
             
             String data = "('"+uName+"','"+drugName+"')";
-            
             state = con.createStatement();
             state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (uName, drug_Name) VALUES" + data);
             state.close();
             
         }catch(Exception e){
-            
             System.err.println("Error: " + e);
             
         }
