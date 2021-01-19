@@ -109,7 +109,7 @@
             </header>
         
             <div class="flexbox1">
-                <form action="LoginServlet" method="post" id="loginform">
+                <form action="LogoutServlet" method="post" id="loginform">
                     <button type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">Request Prescription</button>
                     <button type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">Book Appointment</button>
                     <button type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">View Bookings</button>
