@@ -19,7 +19,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -59,6 +59,13 @@
                 border-radius: 5px;
                 display: inline-block;
                 border: none;
+            }
+
+            select {
+                height: 40px;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
             }
 
             button {
@@ -104,7 +111,7 @@
             label {
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
-                font-size: 18px;
+                font-size: 16px;
                 color: #f8f8f8;
             }
 
@@ -120,14 +127,37 @@
                 padding: 30px 10%;
             }
 
+            .flexbox2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+
+            .flexbox3{
+                display: flex;
+                justify-content: center;
+                padding: 8px 10%
+            }
+
             .buttonBlueStyle {
                 background: #23408e;
             }
-            
+
             .makeHidden {
                 visibility: hidden;
             }
-        </style>    
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
+            }
+        </style>
     </head>
     <body>
         <%-- Invalidate session so access to other pages not allowed. --%>
@@ -135,7 +165,7 @@
         
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <a href="#">Staff Signup</a>
             </header>
             <div>

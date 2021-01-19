@@ -19,7 +19,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -50,16 +50,22 @@
             }
 
             input {
-                color: #fff !important;
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
                 font-size: 16px;
                 text-decoration: none;
-                background: #6b944a;
+                background: #f8f8ff;
                 padding: 20px;
                 border-radius: 5px;
                 display: inline-block;
                 border: none;
+            }
+
+            select {
+                height: 40px;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
             }
 
             button {
@@ -85,14 +91,71 @@
                 transition: all 0.4s ease 0s;
             }
 
+            p { 
+                color: #f8f8f8;
+                font-family: "Montserrat", sans-sarif; 
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 32px;
+                padding: 0px 200px;
+            }
+
+            h1 { /*Title light grey text*/
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 24px;
+                color: #a3a1a0;
+                text-decoration: underline;
+            }
+
+            label {
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
+                color: #f8f8f8;
+            }
+
+            input[type=radio] {
+                border: 0px;
+                width: 1.4em;
+                height: 1.4em;
+            }
+
             .flexbox1{
                 display: flex;
                 justify-content: center;
                 padding: 30px 10%;
             }
 
+            .flexbox2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+
+            .flexbox3{
+                display: flex;
+                justify-content: center;
+                padding: 8px 10%
+            }
+
             .buttonBlueStyle {
                 background: #23408e;
+            }
+
+            .makeHidden {
+                visibility: hidden;
+            }
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
             }
         </style>
     </head>
@@ -104,12 +167,12 @@
         
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <a href="PatientDashboard.jsp"><%=userName%></a>
             </header>
         
             <div class="flexbox1">
-                <form action="LoginServlet" method="post" id="loginform">
+                <form action="LogoutServlet" method="post" id="loginform">
                     <button type="submit" name = "rpButton" value="Request prescription" formaction="PatientServlet">Request Prescription</button>
                     <button type="submit" name = "baButton" value="Book appointment" formaction="PatientServlet">Book Appointment</button>
                     <button type="submit" name = "vbButton" value="View bookings" formaction="PatientServlet">View Bookings</button>

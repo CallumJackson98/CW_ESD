@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background-color: #F5F5F5;
+    background-color: #818287;
     height: 100vh;
 }
 
@@ -133,4 +133,14 @@ input[type=radio] {
 
 .makeHidden {
     visibility: hidden;
+}
+
+
+tr{
+    color:white;
+}
+
+.tr2
+{
+  color:#131313;
 }

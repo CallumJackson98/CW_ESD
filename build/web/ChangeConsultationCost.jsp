@@ -20,7 +20,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -108,22 +108,7 @@
                 color: #a3a1a0;
                 text-decoration: underline;
             }
-            
-            h1 { /*Title light grey text*/
-                font-family: "Montserrat", sans-sarif;
-                font-weight: 500;
-                font-size: 24px;
-                color: #a3a1a0;
-                text-decoration: underline;
-            }
 
-            h2 { /*White text*/
-                font-family: "Montserrat", sans-sarif;
-                font-weight: 500;
-                font-size: 16px;
-                color: #ffffff;
-            }
-            
             label {
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
@@ -136,25 +121,20 @@
                 width: 1.4em;
                 height: 1.4em;
             }
-            
-            input[type=checkbox]{
-                width: 20px;
-                height: 20px;
-             }
 
             .flexbox1{
                 display: flex;
                 justify-content: center;
                 padding: 30px 10%;
             }
-            
+
             .flexbox2{
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 padding: 30px 10%;
             }
-            
+
             .flexbox3{
                 display: flex;
                 justify-content: center;
@@ -168,6 +148,16 @@
             .makeHidden {
                 visibility: hidden;
             }
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
+            }
         </style>
     </head>
     <body>
@@ -177,7 +167,7 @@
         %>
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <h1>Consultation Costs</h1>
             <!--    Header of the page    -->
                 <a href="AdminDashboard.jsp"><%=userName%></a>

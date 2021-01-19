@@ -19,7 +19,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -61,6 +61,13 @@
                 border: none;
             }
 
+            select {
+                height: 40px;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
+            }
+
             button {
                 color: #fff !important;
                 font-family: "Montserrat", sans-sarif;
@@ -100,14 +107,14 @@
                 color: #a3a1a0;
                 text-decoration: underline;
             }
-            
+
             label {
                 font-family: "Montserrat", sans-sarif;
                 font-weight: 500;
-                font-size: 18px;
+                font-size: 16px;
                 color: #f8f8f8;
             }
-            
+
             input[type=radio] {
                 border: 0px;
                 width: 1.4em;
@@ -120,12 +127,35 @@
                 padding: 30px 10%;
             }
 
+            .flexbox2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+
+            .flexbox3{
+                display: flex;
+                justify-content: center;
+                padding: 8px 10%
+            }
+
             .buttonBlueStyle {
                 background: #23408e;
             }
-            
+
             .makeHidden {
                 visibility: hidden;
+            }
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
             }
         </style>
     </head>
@@ -135,7 +165,7 @@
         
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <a href="#">Client Signup</a>
             </header>
             <div>
