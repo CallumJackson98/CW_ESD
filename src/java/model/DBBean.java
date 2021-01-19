@@ -815,13 +815,9 @@ public class DBBean {
             state = con.createStatement();
             rs = state.executeQuery("SELECT * from EMPLOYEE");
             while(rs.next()){
-                
                 if(rs.getString(1).equals(eID)){
-                    
-                    return rs.getString(4);
-                    
+                    return rs.getString(4);   
                 }
-                
             }
             
         } catch (SQLException e) {
