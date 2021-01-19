@@ -203,11 +203,8 @@
                         int counter = 1;
                         ArrayList<String>items = new ArrayList<String>();
                         for(String s:appUsers){
-<<<<<<< HEAD
-                            items = new ArrayList<String>(Arrays.asList(s.split("; ")));
-=======
+
                             items = new ArrayList<String>(Arrays.asList(s.split(";")));
->>>>>>> CSS
                             %>
                             <tr>
                                 <td><%=items.get(0)%></td>

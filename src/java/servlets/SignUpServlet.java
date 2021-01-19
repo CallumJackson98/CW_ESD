@@ -73,11 +73,7 @@ public class SignUpServlet extends HttpServlet {
                 String fullName = fName + " " + sName;
                 
                 // Create new record in CLIENTS
-<<<<<<< HEAD
                 db.addClient("('"+fullName+"';"+"'"+address+"';"+"'"+sType+"';"+"'"+userName+"')");
-=======
-                db.addClient("('"+fullName+"';"+"'"+address+"';"+"'"+sType+"';"+"'"+userName+"')");   
->>>>>>> CSS
 
             }
             // Redirect to home page
