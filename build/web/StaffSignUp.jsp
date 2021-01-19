@@ -54,7 +54,7 @@
                 
                 // Output json
                 var str = JSON.stringify(myJson, null, 2);
-                document.getElementById("json_out").innerHTML = str;
+                //document.getElementById("json_out").innerHTML = str;
                 
                 // Output full address
                 document.getElementById("address").value = myJson.features[0].properties.geocoding['label'];
