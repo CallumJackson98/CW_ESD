@@ -213,14 +213,13 @@
                         int counter = 1;
                         ArrayList<String>items = new ArrayList<String>();
                         for(String s:appUsers){
-                            s = s.replace(";", "");
-                            items = new ArrayList<String>(Arrays.asList(s.split(" ")));
+                            items = new ArrayList<String>(Arrays.asList(s.split(";")));
                             %>
                             <tr>
-                                <td><%=items.get(0) + " " + items.get(1)%></td>
+                                <td><%=items.get(0)%></td>
+                                <td><%=items.get(1)%></td>
                                 <td><%=items.get(2)%></td>
                                 <td><%=items.get(3)%></td>
-                                <td><%=items.get(4)%></td>
                                 <td><%=counter%></td> 
 
                             </tr>

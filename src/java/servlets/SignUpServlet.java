@@ -63,7 +63,7 @@ public class SignUpServlet extends HttpServlet {
                 }
                 
                 // Create new record in TEMPSTAFF
-                db.addTempStaff("('"+fName+" "+sName+"',"+"'"+address+"',"+"'"+userName+"',"+"'"+pwd+"',"+"'"+role+"','"+sShift+"')");
+                db.addTempStaff("('"+fName+" "+sName+"';"+"'"+address+"';"+"'"+userName+"';"+"'"+pwd+"';"+"'"+role+"';'"+sShift+"')");
 
             }else{// Patient sign up
 
@@ -73,7 +73,7 @@ public class SignUpServlet extends HttpServlet {
                 String fullName = fName + " " + sName;
                 
                 // Create new record in CLIENTS
-                db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
+                db.addClient("('"+fullName+"';"+"'"+address+"';"+"'"+sType+"';"+"'"+userName+"')");   
 
             }
             // Redirect to home page
