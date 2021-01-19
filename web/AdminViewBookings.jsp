@@ -1,15 +1,17 @@
 <%-- 
-    Document   : AdminDashboard
-    Created on : 24-Nov-2020, 18:14:27
+    Document   : ViewBookings
+    Created on : 05-Jan-2021, 13:58:26
     Author     : Jake
 --%>
 
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Admin Dashboard</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>View Bookings</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
@@ -160,29 +162,67 @@
         </style>
     </head>
     <body>
-        
+        <!--    Get array list from servlet    -->
         <%
+            ArrayList<String> allAppointments = (ArrayList<String>)request.getAttribute("allAppointments");
             String userName = (String) session.getAttribute("user");
         %>
         
         <div class="content">
             <header>
                 <a>SmartCare Surgery</a>
+                <h1>View Bookings</h1>
                 <a href="AdminDashboard.jsp"><%=userName%></a>
             </header>
-            <div class="flexbox1">
-                <form action="LogoutServlet" method="post">
-                    <button type="submit" name = "srButton" value="View Signup Requests" formaction="ApprovalServlet">View Signup Requests</button>
-                    <button type="submit" name = "vaButton" value="View all users (and delete)" formaction="ApprovalServlet">View all users (and delete)</button>
-                    <button type="submit" name = "viButton" value="View all invoices (and turnover)" formaction="ApprovalServlet">View all invoices (and turnover)</button>
-                </form>
+            <div>
+                <p>
+                    Here you can view all of your bookings and cancel them.
+                    <br><br>
+                    To return to your dashboard simply click your username at the top of the screen.
+                </p>
+            </div>
+            <div>
+                <!--    Create table of users and populate with data from array list    -->
+                <table border ="1" width="500" align="center">
+                    <tr bgcolor="45a5bf" class="tr2"> 
+                        <th colspan="6"><b>Appointments</b></th>
+                    </tr>
+                    <tr bgcolor="45a5bf" class="tr2">
+                        <th>App ID</th>
+                        <th>sID</th>
+                        <th>cID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Index</th> 
+                    </tr>
+                    <%
+                        int counter = 1;
+                        ArrayList<String>items = new ArrayList<String>();
+                        for(String s:allAppointments){
+                            s = s.replace("||", "");
+                            items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                            %>
+                            <tr>
+                                <td><%=items.get(0)%></td> 
+                                <td><%=items.get(1)%></td>
+                                <td><%=items.get(2)%></td>
+                                <td><%=items.get(3)%></td>
+                                <td><%=items.get(4)%></td>
+                                <td><%=counter%></td> 
+                            </tr>
+                            <%counter++;}%>
+                </table>
+            </div>
+            <div>
+                <p>
+                    All appointments are listed here. Please type the ID of an appointment in the box to delete it.
+                </p>
             </div>
             <div class="flexbox1">
-                <form action="LogoutServlet" method="post">
-                    <button type="submit" name = "avbButton" value="Admin View Bookings" formaction="ApprovalServlet">Admin View Bookings</button>
-                    <button type="submit" name = "cccButton" value="Change Consultation Cost" formaction="ApprovalServlet">Change Consultation Cost</button>
-                    <button type="submit" name = "ctButton" value="Calculate Turnover" formaction="ApprovalServlet">Calculate Turnover</button>
-                    <button class="buttonBlueStyle" type="submit" value="Logout">Logout</button>
+                <!--    Display form for user deletion    -->
+                <form action="AdminDeleteBookingServlet" method="post">
+                    <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
+                    <button type="submit" value="Delete">Delete</button>
                 </form>
             </div>
         </div>

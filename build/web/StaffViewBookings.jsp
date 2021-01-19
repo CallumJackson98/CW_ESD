@@ -283,6 +283,7 @@
                     if(document.getElementById("surYes").checked){
                         document.getElementById("datepicker").type = 'text';
                         document.getElementById("slotPick").type = 'text';
+                        document.getElementById("surLab").type = 'text';
                         document.getElementById("hourPick").style.display = 'inline';
                         document.getElementById("minPick").style.display = 'inline';
                     }else{

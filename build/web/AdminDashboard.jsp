@@ -179,6 +179,7 @@
             </div>
             <div class="flexbox1">
                 <form action="LogoutServlet" method="post">
+                    <button type="submit" name = "avbButton" value="Admin View Bookings" formaction="ApprovalServlet">Admin View Bookings</button>
                     <button type="submit" name = "cccButton" value="Change Consultation Cost" formaction="ApprovalServlet">Change Consultation Cost</button>
                     <button type="submit" name = "ctButton" value="Calculate Turnover" formaction="ApprovalServlet">Calculate Turnover</button>
                     <button class="buttonBlueStyle" type="submit" value="Logout">Logout</button>

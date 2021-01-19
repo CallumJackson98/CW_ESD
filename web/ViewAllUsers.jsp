@@ -22,7 +22,7 @@
 
             body {
                 background-color: #818287;
-                height: 100vh;
+                height: 150vh;
             }
 
             * {
@@ -230,10 +230,10 @@
         <!--    Create table of NHS patients populate with data from array list    -->
         <div class="flexbox1">
             <table border ="1" width="500" align="center">
-                <tr bgcolor="45a5bf"> 
+                <tr bgcolor="45a5bf" class="tr2"> 
                     <th colspan="5"><b>NHS Patients</b></th>
                 </tr>
-                <tr bgcolor="45a5bf">
+                <tr bgcolor="45a5bf" class="tr2">
                     <th>Username</th>
                     <th>Address</th>
                     <th>Client Type</th>
@@ -264,10 +264,10 @@
         <div>
             <!--    Create table of Private patients populate with data from array list    -->
             <table border ="1" width="500" align="center">
-                <tr bgcolor="45a5bf"> 
+                <tr bgcolor="45a5bf" class="tr2"> 
                     <th colspan="5"><b>Private Patients</b></th>
                 </tr>
-                <tr bgcolor="45a5bf">
+                <tr bgcolor="45a5bf" class="tr2">
                     <th>Username</th>
                     <th>Address</th>
                     <th>Client Type</th>

@@ -596,6 +596,28 @@ public class DBBean {
         
     }
     
+    public ArrayList<String> getAllAppointments(){
+        ArrayList<String>allAppointments = new ArrayList<String>();
+        try{
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS");
+            
+            String appString;
+            
+            while(rs.next()){
+                
+                appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                                rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                allAppointments.add(appString);
+            }
+            
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+        return(allAppointments);
+    }
+    
     // Verify that surgery slot is free
     public boolean checkIfSurgeryExists(String date, String time, String cID){
         

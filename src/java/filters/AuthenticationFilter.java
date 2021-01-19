@@ -74,8 +74,8 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("ViewInvoices.jsp") || uri.endsWith("ChangeConsultationCostServlet2") 
                                 || uri.endsWith("ChangeConsultationCost.jsp") || uri.endsWith("CalculateTurnover.jsp") 
                                 || uri.endsWith("CalculateTurnoverServlet") || uri.endsWith("PayInvoiceServlet") 
-                                || uri.endsWith("PayInvoice.jsp")) 
-                                && (userType == 0 || userType == 1)){
+                                || uri.endsWith("PayInvoice.jsp") || uri.endsWith("AdminViewBookings.jsp") 
+                                || uri.endsWith("AdminDeleteBookingServlet")) && (userType == 0 || userType == 1)){
                             res.sendRedirect("StaffDashboard.jsp");
                             this.context.log("Redirected staff");
                         }
@@ -90,7 +90,8 @@ public class AuthenticationFilter implements Filter {
                                 || uri.endsWith("ViewInvoiceServlet") || uri.endsWith("ViewInvoices.jsp") 
                                 || uri.endsWith("ChangeConsultationCostServlet2") 
                                 || uri.endsWith("ChangeConsultationCost.jsp") || uri.endsWith("CalculateTurnover.jsp") 
-                                || uri.endsWith("CalculateTurnoverServlet")) && userType == 2){
+                                || uri.endsWith("CalculateTurnoverServlet") || uri.endsWith("AdminViewBookings.jsp") 
+                                || uri.endsWith("AdminDeleteBookingServlet")) && userType == 2){
                             res.sendRedirect("PatientDashboard.jsp");
                             this.context.log("Redirected patient");
                         }
