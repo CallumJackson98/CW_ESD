@@ -14,3 +14,4 @@
         </session-timeout>
     </session-config>
 </web-app>
+<!-- URL mapping done in servlets using @WebServlet annotation so no need to change web.xml -->
