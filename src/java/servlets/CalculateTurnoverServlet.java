@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+//Admin Delete Booking Servlet
+//Callum Jackson and Sam Colwill
+//16-01-2021
+
 package servlets;
 
 import java.io.IOException;
@@ -15,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DBBean;
 
-/**
- *
- * @author callu
- */
+
 @WebServlet(name = "CalculateTurnoverServlet", urlPatterns = {"/CalculateTurnoverServlet"})
 public class CalculateTurnoverServlet extends HttpServlet {
 

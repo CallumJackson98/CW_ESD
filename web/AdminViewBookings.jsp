@@ -1,7 +1,8 @@
 <%-- 
-    Document   : ViewBookings
-    Created on : 05-Jan-2021, 13:58:26
-    Author     : Jake
+    
+    Admin Delete Booking Servlet
+    Callum Jackson and Sam Colwill
+    17-01-2021
 --%>
 
 <%@page import="java.util.Arrays"%>

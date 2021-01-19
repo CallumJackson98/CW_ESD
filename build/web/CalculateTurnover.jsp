@@ -1,7 +1,7 @@
 <%-- 
     Document   : CalculateTurnover
     Created on : 08-Jan-2021, 17:18:30
-    Author     : callu
+    Author     : Callum and Sam
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
