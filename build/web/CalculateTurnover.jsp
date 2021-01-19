@@ -50,7 +50,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -90,6 +90,13 @@
                 border-radius: 5px;
                 display: inline-block;
                 border: none;
+            }
+
+            select {
+                height: 40px;
+                font-family: "Montserrat", sans-sarif;
+                font-weight: 500;
+                font-size: 16px;
             }
 
             button {
@@ -144,13 +151,6 @@
                 width: 1.4em;
                 height: 1.4em;
             }
-            
-            select {
-                height: 40px;
-                font-family: "Montserrat", sans-sarif;
-                font-weight: 500;
-                font-size: 16px;
-            }
 
             .flexbox1{
                 display: flex;
@@ -158,12 +158,35 @@
                 padding: 30px 10%;
             }
 
+            .flexbox2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+
+            .flexbox3{
+                display: flex;
+                justify-content: center;
+                padding: 8px 10%
+            }
+
             .buttonBlueStyle {
                 background: #23408e;
             }
 
-            .addressPrint {
+            .makeHidden {
                 visibility: hidden;
+            }
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
             }
         </style>
     </head>
@@ -175,7 +198,7 @@
            
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <h1>Calculate Turnover</h1>
                 <a href="AdminDashboard.jsp"><%=userName%></a>
             </header>

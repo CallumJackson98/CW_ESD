@@ -21,7 +21,7 @@
             }
 
             body {
-                background-color: #F5F5F5;
+                background-color: #818287;
                 height: 100vh;
             }
 
@@ -129,12 +129,35 @@
                 padding: 30px 10%;
             }
 
+            .flexbox2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px 10%;
+            }
+
+            .flexbox3{
+                display: flex;
+                justify-content: center;
+                padding: 8px 10%
+            }
+
             .buttonBlueStyle {
                 background: #23408e;
             }
 
-            .addressPrint {
+            .makeHidden {
                 visibility: hidden;
+            }
+
+
+            tr{
+                color:white;
+            }
+
+            .tr2
+            {
+              color:#131313;
             }
         </style>
     </head>
@@ -147,7 +170,7 @@
         
         <div class="content">
             <header>
-                <a href="HomePage.html">SmartCare Surgery</a>
+                <a>SmartCare Surgery</a>
                 <h1>View Bookings</h1>
                 <a href="PatientDashboard.jsp"><%=userName%></a>
             </header>
@@ -161,10 +184,10 @@
             <div>
                 <!--    Create table of users and populate with data from array list    -->
                 <table border ="1" width="500" align="center">
-                    <tr bgcolor="45a5bf"> 
+                    <tr bgcolor="45a5bf" class="tr2"> 
                         <th colspan="6"><b>Appointments</b></th>
                     </tr>
-                    <tr bgcolor="45a5bf">
+                    <tr bgcolor="45a5bf" class="tr2">
                         <th>App ID</th>
                         <th>sID</th>
                         <th>cID</th>
