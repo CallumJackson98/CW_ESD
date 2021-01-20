@@ -4,7 +4,7 @@ This project is for the ESD module which implements a site for a GP surgery. Ple
 This SQL to setup the database is below. 
 
 # SQL for DB
-
+```
 create table users(
 	uname varchar(20) primary key,
 	passwd varchar(20),
@@ -117,4 +117,4 @@ INSERT INTO EMPLOYEE (ENAME, EADDRESS, UNAME, SHIFT) VALUES ('Jane Best', '124 H
 INSERT INTO CONSULTATION_PRICES (PTYPE, PCOST) VALUES ('doctor', 100);
 INSERT INTO CONSULTATION_PRICES (PTYPE, PCOST) VALUES ('nurse', 10);
 INSERT INTO CONSULTATION_PRICES (PTYPE, PCOST) VALUES ('Operation', 1000);
-
+```
