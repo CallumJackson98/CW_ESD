@@ -1,6 +1,6 @@
 # CW_ESD
 
-This project is for the ESD module which implements a site for a surgery. Please note that it is necessary to establish a database with the correct data before using the site.
+This project is for the ESD module which implements a site for a GP surgery. Please note that it is necessary to establish a database with the correct data before using the site.
 This SQL to setup the database is below. 
 
 # SQL for DB
