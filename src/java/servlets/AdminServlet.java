@@ -32,6 +32,7 @@ public class AdminServlet extends HttpServlet {
         String sr = request.getParameter("srButton");
         String va = request.getParameter("vaButton");
         String vi = request.getParameter("viButton");
+        String avb = request.getParameter("avbButton");
         String ccc = request.getParameter("cccButton");
         
         System.out.println(sr + " " + va + " " + vi);
@@ -105,6 +106,13 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("prices", pricesList);
             //Set viewer
             viewer = "ChangeConsultationCost.jsp";
+            
+        }else if(avb != null){
+            
+            ArrayList<String> allAppointments = db.getAllAppointments();
+            request.setAttribute("allAppointments", allAppointments);
+            //Set viewer
+            viewer = "AdminViewBookings.jsp";
             
         }else{
             //Set viewer

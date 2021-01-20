@@ -1,16 +1,18 @@
 <%-- 
-    Document   : BookAppointment
-    Created on : 04-Jan-2021, 12:11:08
-    Author     : Jake
+    
+    Admin Delete Booking Servlet
+    Callum Jackson and Sam Colwill
+    17-01-2021
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Book Appointment</title>
+        <title>View Bookings</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
@@ -159,81 +161,71 @@
               color:#131313;
             }
         </style>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-        
-        <script>
-        $( function() {
-          $( "#datepicker" ).datepicker({
-              dateFormat: "dd-mm-yy",
-              minDate: 0,
-              maxDate: "+2w",
-              onSelect: function() {
-                var date = $(this).datepicker('getDate');
-                $('#day_hidden').val($.datepicker.formatDate('DD', date));
-              }
-          });
-        } );
-        </script>
-        
     </head>
     <body>
+        <!--    Get array list from servlet    -->
         <%
+            ArrayList<String> allAppointments = (ArrayList<String>)request.getAttribute("allAppointments");
             String userName = (String) session.getAttribute("user");
-            ArrayList<String> allUsers = (ArrayList<String>)request.getAttribute("allStaff");
-            
         %>
-           
+        
         <div class="content">
             <header>
                 <a>SmartCare Surgery</a>
-                <h1>Book Appointment</h1>
-                <a href="PatientDashboard.jsp"><%=userName%></a>
+                <h1>View Bookings</h1>
+                <a href="AdminDashboard.jsp"><%=userName%></a>
             </header>
             <div>
                 <p>
-                    From this page you can book an appointment. Please select a date and a time. 
-                    Doctor's appointments can be made from Monday to Friday. The Nurse is only
-                    in from Tuesday to Thursday. If no slots are available, no appointment will be made.
+                    Here you can view all of your bookings and cancel them.
                     <br><br>
                     To return to your dashboard simply click your username at the top of the screen.
                 </p>
             </div>
-            <div class="flexbox1">
-                <form action="BookAppointmentServlet" method="post">
-                    <input type="text" id="datepicker" name="date" required placeholder="Date">
-                    <select name="hour">
-                        <option>09</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                    </select>
-                    <select name="mins">
-                        <option>00</option>
-                        <option>15</option>
-                        <option>30</option>
-                        <option>45</option>
-                    </select>
-                    <select name="staff" id="staffSelect">
-                        <%
-                        for(String s:allUsers){%> 
-                        <option><%=s%></option>
-                        <%}%>
-                    </select>
-                    <input type="hidden" id="uName_hidden" name="uName_hidden"  value="<%=userName%>">
-                    <input type="hidden" id="day_hidden" name="day_hidden"  value="">
-                    <button type="submit" value="BookAppointment">Book Appointment</button>
-                </form>
-                    
+            <div>
+                <!--    Create table of users and populate with data from array list    -->
+                <table border ="1" width="500" align="center">
+                    <tr bgcolor="45a5bf" class="tr2"> 
+                        <th colspan="6"><b>Appointments</b></th>
+                    </tr>
+                    <tr bgcolor="45a5bf" class="tr2">
+                        <th>App ID</th>
+                        <th>sID</th>
+                        <th>cID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Index</th> 
+                    </tr>
+                    <%
+                        int counter = 1;
+                        ArrayList<String>items = new ArrayList<String>();
+                        for(String s:allAppointments){
+                            s = s.replace("||", "");
+                            items = new ArrayList<String>(Arrays.asList(s.split("  ")));
+                            %>
+                            <tr>
+                                <td><%=items.get(0)%></td> 
+                                <td><%=items.get(1)%></td>
+                                <td><%=items.get(2)%></td>
+                                <td><%=items.get(3)%></td>
+                                <td><%=items.get(4)%></td>
+                                <td><%=counter%></td> 
+                            </tr>
+                            <%counter++;}%>
+                </table>
             </div>
-            
+            <div>
+                <p>
+                    All appointments are listed here. Please type the ID of an appointment in the box to delete it.
+                </p>
+            </div>
+            <div class="flexbox1">
+                <!--    Display form for user deletion    -->
+                <form action="AdminDeleteBookingServlet" method="post">
+                    <input type="text" id="appID" name="appID" required placeholder="Appointment ID">
+                    <button type="submit" value="Delete">Delete</button>
+                </form>
+            </div>
         </div>
-        
     </body>
 </html>

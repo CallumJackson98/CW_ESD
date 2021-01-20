@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+//Admin Delete Booking Servlet
+//Callum Jackson and Sam Colwill
+//16-01-2021
+
 package servlets;
 
 import java.io.IOException;
@@ -16,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DBBean;
 
-/**
- *
- * @author Jake
- */
+
 @WebServlet(name = "ConsultationServlet", urlPatterns = {"/ConsultationServlet"})
 public class ConsultationServlet extends HttpServlet {
 
@@ -46,7 +44,7 @@ public class ConsultationServlet extends HttpServlet {
         boolean failed = false;
         String formattedDate = "";
         String viewer = "StaffDashboard.jsp";
-        
+
         // Initialise variables of empty
         if(!date.equals("")){
             // Convert date to accepted format.
@@ -97,13 +95,18 @@ public class ConsultationServlet extends HttpServlet {
             System.out.println("calc charge");
             // Calculate charge of operation
             int slotsInt = (Integer) Integer.parseInt(slotNum);
+            System.out.println("here");
             float opCostFloat = Float.parseFloat(db.getOperationSlotCost("Operation"));
+            System.out.println("here1");
             int opCost = (int) opCostFloat;
+            System.out.println("here2");
             String charge = Integer.toString(opCost*slotsInt);
+            System.out.println("here3");
             
             // If surgery, create record in OPERATIONS
             if(surgery.equals("surYes")){
-
+                
+                
                 System.out.println("inside surg");
                 // Check if surgery already exists for client at this time
                 if(!db.checkIfSurgeryExists(formattedDate, hour+":"+mins+":00", cID)){
@@ -116,7 +119,6 @@ public class ConsultationServlet extends HttpServlet {
                 }
 
             }
-
             if(!failed){
                 
                 System.out.println("surge not failed do rest");

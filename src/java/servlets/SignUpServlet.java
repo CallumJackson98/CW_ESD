@@ -73,19 +73,16 @@ public class SignUpServlet extends HttpServlet {
                 String fullName = fName + " " + sName;
                 
                 // Create new record in CLIENTS
-                db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");   
+                db.addClient("('"+fullName+"',"+"'"+address+"',"+"'"+sType+"',"+"'"+userName+"')");
 
             }
-
             // Redirect to home page
             response.sendRedirect("HomePage.html");
         
         }else{
             System.out.println("Error connecting to databse.");
         }
-                
     }
-
 }
 
 

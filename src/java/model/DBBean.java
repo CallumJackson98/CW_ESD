@@ -239,6 +239,7 @@ public class DBBean {
             
             // Delete from clients or employees first (holds foreign key)
             PreparedStatement st = con.prepareStatement("DELETE FROM CLIENTS WHERE UNAME = ?");
+            System.out.println(uName);
             st.setString(1, uName);
             st.executeUpdate();
             
@@ -291,13 +292,11 @@ public class DBBean {
         try{
             
             String data = "('"+uName+"','"+drugName+"')";
-            
             state = con.createStatement();
             state.executeUpdate("INSERT INTO TEMP_PRESCRIPTIONS (uName, drug_Name) VALUES" + data);
             state.close();
             
         }catch(Exception e){
-            
             System.err.println("Error: " + e);
             
         }
@@ -597,6 +596,28 @@ public class DBBean {
         
     }
     
+    public ArrayList<String> getAllAppointments(){
+        ArrayList<String>allAppointments = new ArrayList<String>();
+        try{
+            state = con.createStatement();
+            rs = state.executeQuery("SELECT * from BOOKING_SLOTS");
+            
+            String appString;
+            
+            while(rs.next()){
+                
+                appString = rs.getString(1) + " || " + rs.getString(2) + " || " + 
+                                rs.getString(3) + " || " + rs.getString(4) + " || " + rs.getString(5);
+                allAppointments.add(appString);
+            }
+            
+        }catch(Exception e){
+            System.err.println("Error: " + e);
+        }
+        
+        return(allAppointments);
+    }
+    
     // Verify that surgery slot is free
     public boolean checkIfSurgeryExists(String date, String time, String cID){
         
@@ -816,13 +837,9 @@ public class DBBean {
             state = con.createStatement();
             rs = state.executeQuery("SELECT * from EMPLOYEE");
             while(rs.next()){
-                
                 if(rs.getString(1).equals(eID)){
-                    
-                    return rs.getString(4);
-                    
+                    return rs.getString(4);   
                 }
-                
             }
             
         } catch (SQLException e) {

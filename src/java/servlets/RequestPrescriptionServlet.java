@@ -39,7 +39,6 @@ public class RequestPrescriptionServlet extends HttpServlet {
             // Get values from form
             String uName = request.getParameter("uName_hidden");
             String drugName = request.getParameter("drugName");
-            
             // Get connection to database
             DBBean db = new DBBean();
             boolean bool = db.getConnection();
